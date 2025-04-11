@@ -50,7 +50,7 @@ Psuedocode:
 1. Gather list of S&P500 firms
 2. Filter on tech firms
 3. Create a dataframe with the observations being firm and year
-4. For each each year and firm, pull corresponding CEO
+4. For each year and firm, pull corresponding CEO
 5. Add CEOs to df
 6. For each year and CEO, pull headshot and store in a zip file
 7. For each picture, open and run packages to identify scores

@@ -60,7 +60,9 @@ Psuedocode:
 
 ## Output 
 
-### Scoring and ranking of each CEO's headshot
+![dashboard](images/Dashboard.png)
 
-![Alt text](downloads/sample-headshots.png)
-
+The photo above displays our final project output, which is a dashboard that explains the findings of our study. The dashboard includes:
+1. Correlations between image attributes and firm return
+2. Scoring and rankings of each CEO's headshot
+3. Interactive area to look up the results for any CEO during any given year 

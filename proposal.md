@@ -57,3 +57,10 @@ Psuedocode:
 8. Save Scores to dataframe
 9. Repeat this process until every picture is scored
 10. For each year and CEO, pull firm returns from Yahoo finance and store in df
+
+## Output 
+
+### Scoring and ranking of each CEO's headshot
+
+![Alt text](downloads/sample-headshots.png)
+

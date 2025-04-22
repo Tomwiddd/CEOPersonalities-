@@ -1,6 +1,49 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import os
+import seaborn as sns
+
+# --- Data Loading ---
+
+# Load monthly returns data (assuming the file exists)
+@st.cache_data
+def load_returns_data():
+    # Update this path to where your CSV file is located
+    returns_file = "monthly_returns_2010_2025.csv"
+    if os.path.exists(returns_file):
+        # Assuming CSV has columns like Date, AAPL, META, SPY, etc.
+        df = pd.read_csv(returns_file)
+        # Convert Date column to datetime
+        df['Date'] = pd.to_datetime(df['Date'])
+        df.set_index('Date', inplace=True)
+        return df
+    else:
+        # If file doesn't exist, create dummy data for demonstration
+        date_range = pd.date_range(start='2010-01-01', end='2025-12-31', freq='M')
+        tickers = ['AAPL', 'META', 'MSFT', 'GOOGL', 'AMZN', 'SPY']
+        
+        # Create random returns with some correlation
+        np.random.seed(42)  # For reproducibility
+        n_dates = len(date_range)
+        n_tickers = len(tickers)
+        
+        # Base market return (SPY like)
+        market_returns = np.random.normal(0.008, 0.04, n_dates)  # Monthly mean ~1%, SD ~4%
+        
+        all_returns = {}
+        for i, ticker in enumerate(tickers):
+            if ticker == 'SPY':
+                all_returns[ticker] = market_returns
+            else:
+                # Add some correlation to market with company-specific noise
+                beta = np.random.uniform(0.8, 1.5)  # Random beta
+                stock_returns = beta * market_returns + np.random.normal(0.002, 0.08, n_dates)
+                all_returns[ticker] = stock_returns
+                
+        df = pd.DataFrame(all_returns, index=date_range)
+        return df
 
 # --- Pseuso Data Creation ---
 
@@ -32,9 +75,7 @@ def color_correlation(val):
         color = 'black'
     return f'color: {color}'
 
-# 2. CEO/Company Data (Example with 2 companies over 2 years)
-# Replace 'placeholder_image_url_1.jpg', etc. with actual image paths or URLs
-# For local files use the path, for web images use the URL.
+# 2. CEO/Company Data (Extended with tenure information)
 ceo_data = {
     'Company': ['AAPL', 'AAPL', 'META', 'META'],
     'Year': [2019, 2020, 2019, 2020],
@@ -51,6 +92,7 @@ ceo_data = {
     'Neutral': [0.70, 0.65, 0.75, 0.70],
     'Attractiveness': [0.7, 0.72, 0.65, 0.66],
     'Firm Return': [0.1, 0.15, 0.08, 0.12], # Example firm returns
+    'Tenure Start': ['2011-08-24', '2011-08-24', '2004-02-04', '2004-02-04'],  # Adding CEO tenure start
     'Image URL': [
         'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tim_Cook_2019.jpg/440px-Tim_Cook_2019.jpg', # Example URL for Tim Cook
         'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tim_Cook_2019.jpg/440px-Tim_Cook_2019.jpg',
@@ -59,12 +101,58 @@ ceo_data = {
     ]
 }
 ceo_df = pd.DataFrame(ceo_data)
+ceo_df['Tenure Start'] = pd.to_datetime(ceo_df['Tenure Start'])
+
+# Function to plot cumulative returns
+def plot_cumulative_returns(ticker, start_date, returns_df):
+    # Create a copy to avoid modifying the original
+    plot_df = returns_df.copy()
+    
+    # Filter data from start_date onwards
+    if start_date in plot_df.index:
+        plot_df = plot_df[plot_df.index >= start_date]
+    else:
+        # Find the next available date if start_date is not in the index
+        plot_df = plot_df[plot_df.index >= plot_df.index[plot_df.index > start_date][0]]
+    
+    # Check if we have data for this ticker
+    if ticker not in plot_df.columns or 'SPY' not in plot_df.columns:
+        st.error(f"Return data not available for {ticker} or SPY")
+        return None
+    
+    # Calculate cumulative returns (adding 1 to each return and using cumprod)
+    plot_df['Cum_Return_' + ticker] = (1 + plot_df[ticker]).cumprod() - 1
+    plot_df['Cum_Return_SPY'] = (1 + plot_df['SPY']).cumprod() - 1
+    
+    # Create plot
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.lineplot(data=plot_df, x=plot_df.index, y='Cum_Return_' + ticker, ax=ax, label=ticker)
+    sns.lineplot(data=plot_df, x=plot_df.index, y='Cum_Return_SPY', ax=ax, label='SPY')
+    
+    plt.title(f"Cumulative Returns: {ticker} vs SPY")
+    plt.xlabel("Date")
+    plt.ylabel("Cumulative Return (%)")
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.7)
+    
+    # Format y-axis as percentage
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: '{:.0%}'.format(y)))
+    
+    # Rotate x-axis labels for better readability
+    plt.xticks(rotation=45)
+    
+    plt.tight_layout()
+    
+    return fig
 
 # --- Streamlit App Layout ---
 
 st.set_page_config(layout="wide") # Use wide layout
 
 st.title("Study of CEO Headshot Attributes and Firm Returns")
+
+# Load returns data
+returns_df = load_returns_data()
 
 col1, col2 = st.columns([1, 2]) # Define columns for layout (adjust ratio as needed)
 
@@ -116,11 +204,24 @@ with col2:
         st.text(f"Neutral: {selected_data['Neutral']:.2f}")
         st.text(f"Attractiveness: {selected_data['Attractiveness']:.1f}")
 
+# New section for cumulative returns plot
+st.subheader(f"Cumulative Returns During {selected_data['CEO']}'s Tenure")
+
+# Get the tenure start date for the selected company/CEO
+tenure_start = selected_data['Tenure Start']
+
+# Create and display the plot
+if selected_company in returns_df.columns and 'SPY' in returns_df.columns:
+    fig = plot_cumulative_returns(selected_company, tenure_start, returns_df)
+    if fig:
+        st.pyplot(fig)
+else:
+    st.error(f"Return data not available for {selected_company} or SPY. Please check your data file.")
 
 # --- How to Run ---
 # 1. Save the code above as a Python file (e.g., `ceo_app.py`).
-# 2. Make sure you have streamlit and pandas installed:
-#    pip install streamlit pandas
+# 2. Make sure you have streamlit, pandas, matplotlib and seaborn installed:
+#    pip install streamlit pandas matplotlib seaborn
 # 3. Open your terminal or command prompt.
 # 4. Navigate to the directory where you saved the file.
 # 5. Run the app using:

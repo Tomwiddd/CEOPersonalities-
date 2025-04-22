@@ -94,8 +94,8 @@ ceo_data = {
     'Firm Return': [0.1, 0.15, 0.08, 0.12], # Example firm returns
     'Tenure Start': ['2011-08-24', '2011-08-24', '2004-02-04', '2004-02-04'],  # Adding CEO tenure start
     'Image URL': [
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tim_Cook_2019.jpg/440px-Tim_Cook_2019.jpg', # Example URL for Tim Cook
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tim_Cook_2019.jpg/440px-Tim_Cook_2019.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Visit_of_Tim_Cook_to_the_European_Commission_-_P061904-946789.jpg/1024px-Visit_of_Tim_Cook_to_the_European_Commission_-_P061904-946789.jpg', # Example URL for Tim Cook
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Visit_of_Tim_Cook_to_the_European_Commission_-_P061904-946789.jpg/1024px-Visit_of_Tim_Cook_to_the_European_Commission_-_P061904-946789.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg/440px-Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg', # Example URL for Mark Zuckerberg
         'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg/440px-Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg'
     ]

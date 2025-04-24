@@ -1,0 +1,681 @@
+Company,Ticker,Year,CEO
+Apple Inc.,AAPL,2010,Steve Jobs
+Apple Inc.,AAPL,2011,Tim Cook
+Apple Inc.,AAPL,2012,Tim Cook
+Apple Inc.,AAPL,2013,Tim Cook
+Apple Inc.,AAPL,2014,Tim Cook
+Apple Inc.,AAPL,2015,Tim Cook
+Apple Inc.,AAPL,2016,Tim Cook
+Apple Inc.,AAPL,2017,Tim Cook
+Apple Inc.,AAPL,2018,Tim Cook
+Apple Inc.,AAPL,2019,Tim Cook
+Microsoft Corporation,MSFT,2010,Steve Ballmer
+Microsoft Corporation,MSFT,2011,Steve Ballmer
+Microsoft Corporation,MSFT,2012,Steve Ballmer
+Microsoft Corporation,MSFT,2013,Steve Ballmer
+Microsoft Corporation,MSFT,2014,Satya Nadella
+Microsoft Corporation,MSFT,2015,Satya Nadella
+Microsoft Corporation,MSFT,2016,Satya Nadella
+Microsoft Corporation,MSFT,2017,Satya Nadella
+Microsoft Corporation,MSFT,2018,Satya Nadella
+Microsoft Corporation,MSFT,2019,Satya Nadella
+NVIDIA Corporation,NVDA,2010,Jensen Huang
+NVIDIA Corporation,NVDA,2011,Jensen Huang
+NVIDIA Corporation,NVDA,2012,Jensen Huang
+NVIDIA Corporation,NVDA,2013,Jensen Huang
+NVIDIA Corporation,NVDA,2014,Jensen Huang
+NVIDIA Corporation,NVDA,2015,Jensen Huang
+NVIDIA Corporation,NVDA,2016,Jensen Huang
+NVIDIA Corporation,NVDA,2017,Jensen Huang
+NVIDIA Corporation,NVDA,2018,Jensen Huang
+NVIDIA Corporation,NVDA,2019,Jensen Huang
+Broadcom Inc.,AVGO,2010,Scott A. McGregor
+Broadcom Inc.,AVGO,2011,Scott A. McGregor
+Broadcom Inc.,AVGO,2012,Scott A. McGregor
+Broadcom Inc.,AVGO,2013,Scott A. McGregor
+Broadcom Inc.,AVGO,2014,Scott A. McGregor
+Broadcom Inc.,AVGO,2015,Scott A. McGregor
+Broadcom Inc.,AVGO,2016,Hock Tan
+Broadcom Inc.,AVGO,2017,Hock Tan
+Broadcom Inc.,AVGO,2018,Hock Tan
+Broadcom Inc.,AVGO,2019,Hock Tan
+Adobe Inc.,ADBE,2010,Shantanu Narayen
+Adobe Inc.,ADBE,2011,Shantanu Narayen
+Adobe Inc.,ADBE,2012,Shantanu Narayen
+Adobe Inc.,ADBE,2013,Shantanu Narayen
+Adobe Inc.,ADBE,2014,Shantanu Narayen
+Adobe Inc.,ADBE,2015,Shantanu Narayen
+Adobe Inc.,ADBE,2016,Shantanu Narayen
+Adobe Inc.,ADBE,2017,Shantanu Narayen
+Adobe Inc.,ADBE,2018,Shantanu Narayen
+Adobe Inc.,ADBE,2019,Shantanu Narayen
+"Cisco Systems, Inc.",CSCO,2010,John T. Chambers
+"Cisco Systems, Inc.",CSCO,2011,John T. Chambers
+"Cisco Systems, Inc.",CSCO,2012,John T. Chambers
+"Cisco Systems, Inc.",CSCO,2013,John T. Chambers
+"Cisco Systems, Inc.",CSCO,2014,John T. Chambers
+"Cisco Systems, Inc.",CSCO,2015,Chuck Robbins
+"Cisco Systems, Inc.",CSCO,2016,Chuck Robbins
+"Cisco Systems, Inc.",CSCO,2017,Chuck Robbins
+"Cisco Systems, Inc.",CSCO,2018,Chuck Robbins
+"Cisco Systems, Inc.",CSCO,2019,Chuck Robbins
+Oracle Corporation,ORCL,2010,Larry Ellison
+Oracle Corporation,ORCL,2011,Larry Ellison
+Oracle Corporation,ORCL,2012,Larry Ellison
+Oracle Corporation,ORCL,2013,Larry Ellison
+Oracle Corporation,ORCL,2014,Safra Catz & Mark Hurd
+Oracle Corporation,ORCL,2015,Safra Catz & Mark Hurd
+Oracle Corporation,ORCL,2016,Safra Catz & Mark Hurd
+Oracle Corporation,ORCL,2017,Safra Catz & Mark Hurd
+Oracle Corporation,ORCL,2018,Safra Catz & Mark Hurd
+Oracle Corporation,ORCL,2019,Safra Catz & Mark Hurd
+"Salesforce, Inc.",CRM,2010,Marc Benioff
+"Salesforce, Inc.",CRM,2011,Marc Benioff
+"Salesforce, Inc.",CRM,2012,Marc Benioff
+"Salesforce, Inc.",CRM,2013,Marc Benioff
+"Salesforce, Inc.",CRM,2014,Marc Benioff
+"Salesforce, Inc.",CRM,2015,Marc Benioff
+"Salesforce, Inc.",CRM,2016,Marc Benioff
+"Salesforce, Inc.",CRM,2017,Marc Benioff
+"Salesforce, Inc.",CRM,2018,Marc Benioff
+"Salesforce, Inc.",CRM,2019,Marc Benioff
+Intel Corporation,INTC,2010,Paul Otellini
+Intel Corporation,INTC,2011,Paul Otellini
+Intel Corporation,INTC,2012,Paul Otellini
+Intel Corporation,INTC,2013,Brian Krzanich
+Intel Corporation,INTC,2014,Brian Krzanich
+Intel Corporation,INTC,2015,Brian Krzanich
+Intel Corporation,INTC,2016,Brian Krzanich
+Intel Corporation,INTC,2017,Brian Krzanich
+Intel Corporation,INTC,2018,Bob Swan
+Intel Corporation,INTC,2019,Bob Swan
+Texas Instruments Inc.,TXN,2010,Richard K. Templeton
+Texas Instruments Inc.,TXN,2011,Richard K. Templeton
+Texas Instruments Inc.,TXN,2012,Richard K. Templeton
+Texas Instruments Inc.,TXN,2013,Richard K. Templeton
+Texas Instruments Inc.,TXN,2014,Richard K. Templeton
+Texas Instruments Inc.,TXN,2015,Richard K. Templeton
+Texas Instruments Inc.,TXN,2016,Richard K. Templeton
+Texas Instruments Inc.,TXN,2017,Richard K. Templeton
+Texas Instruments Inc.,TXN,2018,Brian Crutcher
+Texas Instruments Inc.,TXN,2019,Brian Crutcher
+Qualcomm Incorporated,QCOM,2010,Paul E. Jacobs
+Qualcomm Incorporated,QCOM,2011,Paul E. Jacobs
+Qualcomm Incorporated,QCOM,2012,Paul E. Jacobs
+Qualcomm Incorporated,QCOM,2013,Paul E. Jacobs
+Qualcomm Incorporated,QCOM,2014,Steve Mollenkopf
+Qualcomm Incorporated,QCOM,2015,Steve Mollenkopf
+Qualcomm Incorporated,QCOM,2016,Steve Mollenkopf
+Qualcomm Incorporated,QCOM,2017,Steve Mollenkopf
+Qualcomm Incorporated,QCOM,2018,Steve Mollenkopf
+Qualcomm Incorporated,QCOM,2019,Steve Mollenkopf
+International Business Machines Corporation,IBM,2010,Samuel J. Palmisano
+International Business Machines Corporation,IBM,2011,Samuel J. Palmisano
+International Business Machines Corporation,IBM,2012,Virginia Rometty
+International Business Machines Corporation,IBM,2013,Virginia Rometty
+International Business Machines Corporation,IBM,2014,Virginia Rometty
+International Business Machines Corporation,IBM,2015,Virginia Rometty
+International Business Machines Corporation,IBM,2016,Virginia Rometty
+International Business Machines Corporation,IBM,2017,Virginia Rometty
+International Business Machines Corporation,IBM,2018,Virginia Rometty
+International Business Machines Corporation,IBM,2019,Virginia Rometty
+"PayPal Holdings, Inc.",PYPL,2010,John Donahoe (under eBay)
+"PayPal Holdings, Inc.",PYPL,2011,John Donahoe (under eBay)
+"PayPal Holdings, Inc.",PYPL,2012,John Donahoe (under eBay)
+"PayPal Holdings, Inc.",PYPL,2013,John Donahoe (under eBay)
+"PayPal Holdings, Inc.",PYPL,2014,John Donahoe (under eBay)
+"PayPal Holdings, Inc.",PYPL,2015,Dan Schulman
+"PayPal Holdings, Inc.",PYPL,2016,Dan Schulman
+"PayPal Holdings, Inc.",PYPL,2017,Dan Schulman
+"PayPal Holdings, Inc.",PYPL,2018,Dan Schulman
+"PayPal Holdings, Inc.",PYPL,2019,Dan Schulman
+"ServiceNow, Inc.",NOW,2010,Fred Luddy
+"ServiceNow, Inc.",NOW,2011,Fred Luddy
+"ServiceNow, Inc.",NOW,2012,Frank Slootman
+"ServiceNow, Inc.",NOW,2013,Frank Slootman
+"ServiceNow, Inc.",NOW,2014,Frank Slootman
+"ServiceNow, Inc.",NOW,2015,Frank Slootman
+"ServiceNow, Inc.",NOW,2016,Frank Slootman
+"ServiceNow, Inc.",NOW,2017,John Donahoe
+"ServiceNow, Inc.",NOW,2018,John Donahoe
+"ServiceNow, Inc.",NOW,2019,John Donahoe
+Intuit Inc.,INTU,2010,Brad Smith
+Intuit Inc.,INTU,2011,Brad Smith
+Intuit Inc.,INTU,2012,Brad Smith
+Intuit Inc.,INTU,2013,Brad Smith
+Intuit Inc.,INTU,2014,Brad Smith
+Intuit Inc.,INTU,2015,Brad Smith
+Intuit Inc.,INTU,2016,Brad Smith
+Intuit Inc.,INTU,2017,Brad Smith
+Intuit Inc.,INTU,2018,Brad Smith
+Intuit Inc.,INTU,2019,Sasan Goodarzi
+"Advanced Micro Devices, Inc.",AMD,2010,Dirk Meyer
+"Advanced Micro Devices, Inc.",AMD,2011,Thomas Seifert (interim)
+"Advanced Micro Devices, Inc.",AMD,2012,Rory Read
+"Advanced Micro Devices, Inc.",AMD,2013,Rory Read
+"Advanced Micro Devices, Inc.",AMD,2014,Lisa Su
+"Advanced Micro Devices, Inc.",AMD,2015,Lisa Su
+"Advanced Micro Devices, Inc.",AMD,2016,Lisa Su
+"Advanced Micro Devices, Inc.",AMD,2017,Lisa Su
+"Advanced Micro Devices, Inc.",AMD,2018,Lisa Su
+"Advanced Micro Devices, Inc.",AMD,2019,Lisa Su
+HP Inc.,HPQ,2010,Mark Hurd
+HP Inc.,HPQ,2011,Leo Apotheker
+HP Inc.,HPQ,2012,Meg Whitman
+HP Inc.,HPQ,2013,Meg Whitman
+HP Inc.,HPQ,2014,Meg Whitman
+HP Inc.,HPQ,2015,Dion Weisler
+HP Inc.,HPQ,2016,Dion Weisler
+HP Inc.,HPQ,2017,Dion Weisler
+HP Inc.,HPQ,2018,Dion Weisler
+HP Inc.,HPQ,2019,Enrique Lores
+"Micron Technology, Inc.",MU,2010,Steve Appleton
+"Micron Technology, Inc.",MU,2011,Steve Appleton
+"Micron Technology, Inc.",MU,2012,Mark Durcan
+"Micron Technology, Inc.",MU,2013,Mark Durcan
+"Micron Technology, Inc.",MU,2014,Mark Durcan
+"Micron Technology, Inc.",MU,2015,Mark Durcan
+"Micron Technology, Inc.",MU,2016,Mark Durcan
+"Micron Technology, Inc.",MU,2017,Sanjay Mehrotra
+"Micron Technology, Inc.",MU,2018,Sanjay Mehrotra
+"Micron Technology, Inc.",MU,2019,Sanjay Mehrotra
+"Analog Devices, Inc.",ADI,2010,Jerald Fishman
+"Analog Devices, Inc.",ADI,2011,Jerald Fishman
+"Analog Devices, Inc.",ADI,2012,Jerald Fishman
+"Analog Devices, Inc.",ADI,2013,Vincent Roche
+"Analog Devices, Inc.",ADI,2014,Vincent Roche
+"Analog Devices, Inc.",ADI,2015,Vincent Roche
+"Analog Devices, Inc.",ADI,2016,Vincent Roche
+"Analog Devices, Inc.",ADI,2017,Vincent Roche
+"Analog Devices, Inc.",ADI,2018,Vincent Roche
+"Analog Devices, Inc.",ADI,2019,Vincent Roche
+Lam Research Corporation,LRCX,2010,Stephen G. Newberry
+Lam Research Corporation,LRCX,2011,Stephen G. Newberry
+Lam Research Corporation,LRCX,2012,Martin Anstice
+Lam Research Corporation,LRCX,2013,Martin Anstice
+Lam Research Corporation,LRCX,2014,Martin Anstice
+Lam Research Corporation,LRCX,2015,Martin Anstice
+Lam Research Corporation,LRCX,2016,Martin Anstice
+Lam Research Corporation,LRCX,2017,Martin Anstice
+Lam Research Corporation,LRCX,2018,Martin Anstice
+Lam Research Corporation,LRCX,2019,Tim Archer
+"Applied Materials, Inc.",AMAT,2010,Michael R. Splinter
+"Applied Materials, Inc.",AMAT,2011,Michael R. Splinter
+"Applied Materials, Inc.",AMAT,2012,Michael R. Splinter
+"Applied Materials, Inc.",AMAT,2013,Gary E. Dickerson
+"Applied Materials, Inc.",AMAT,2014,Gary E. Dickerson
+"Applied Materials, Inc.",AMAT,2015,Gary E. Dickerson
+"Applied Materials, Inc.",AMAT,2016,Gary E. Dickerson
+"Applied Materials, Inc.",AMAT,2017,Gary E. Dickerson
+"Applied Materials, Inc.",AMAT,2018,Gary E. Dickerson
+"Applied Materials, Inc.",AMAT,2019,Gary E. Dickerson
+KLA Corporation,KLAC,2010,Rick Wallace
+KLA Corporation,KLAC,2011,Rick Wallace
+KLA Corporation,KLAC,2012,Rick Wallace
+KLA Corporation,KLAC,2013,Rick Wallace
+KLA Corporation,KLAC,2014,Rick Wallace
+KLA Corporation,KLAC,2015,Rick Wallace
+KLA Corporation,KLAC,2016,Rick Wallace
+KLA Corporation,KLAC,2017,Rick Wallace
+KLA Corporation,KLAC,2018,Rick Wallace
+KLA Corporation,KLAC,2019,Rick Wallace
+"Marvell Technology, Inc.",MRVL,2010,Sehat Sutardja
+"Marvell Technology, Inc.",MRVL,2011,Sehat Sutardja
+"Marvell Technology, Inc.",MRVL,2012,Sehat Sutardja
+"Marvell Technology, Inc.",MRVL,2013,Sehat Sutardja
+"Marvell Technology, Inc.",MRVL,2014,Sehat Sutardja
+"Marvell Technology, Inc.",MRVL,2015,Sehat Sutardja
+"Marvell Technology, Inc.",MRVL,2016,Matthew J. Murphy
+"Marvell Technology, Inc.",MRVL,2017,Matthew J. Murphy
+"Marvell Technology, Inc.",MRVL,2018,Matthew J. Murphy
+"Marvell Technology, Inc.",MRVL,2019,Matthew J. Murphy
+"Cadence Design Systems, Inc.",CDNS,2010,Lip-Bu Tan
+"Cadence Design Systems, Inc.",CDNS,2011,Lip-Bu Tan
+"Cadence Design Systems, Inc.",CDNS,2012,Lip-Bu Tan
+"Cadence Design Systems, Inc.",CDNS,2013,Lip-Bu Tan
+"Cadence Design Systems, Inc.",CDNS,2014,Lip-Bu Tan
+"Cadence Design Systems, Inc.",CDNS,2015,Lip-Bu Tan
+"Cadence Design Systems, Inc.",CDNS,2016,Lip-Bu Tan
+"Cadence Design Systems, Inc.",CDNS,2017,Lip-Bu Tan
+"Cadence Design Systems, Inc.",CDNS,2018,Lip-Bu Tan
+"Cadence Design Systems, Inc.",CDNS,2019,Lip-Bu Tan
+"Synopsys, Inc.",SNPS,2010,Aart de Geus
+"Synopsys, Inc.",SNPS,2011,Aart de Geus
+"Synopsys, Inc.",SNPS,2012,Aart de Geus
+"Synopsys, Inc.",SNPS,2013,Aart de Geus
+"Synopsys, Inc.",SNPS,2014,Aart de Geus
+"Synopsys, Inc.",SNPS,2015,Aart de Geus
+"Synopsys, Inc.",SNPS,2016,Aart de Geus
+"Synopsys, Inc.",SNPS,2017,Aart de Geus
+"Synopsys, Inc.",SNPS,2018,Aart de Geus
+"Synopsys, Inc.",SNPS,2019,Aart de Geus
+"Fortinet, Inc.",FTNT,2010,Ken Xie
+"Fortinet, Inc.",FTNT,2011,Ken Xie
+"Fortinet, Inc.",FTNT,2012,Ken Xie
+"Fortinet, Inc.",FTNT,2013,Ken Xie
+"Fortinet, Inc.",FTNT,2014,Ken Xie
+"Fortinet, Inc.",FTNT,2015,Ken Xie
+"Fortinet, Inc.",FTNT,2016,Ken Xie
+"Fortinet, Inc.",FTNT,2017,Ken Xie
+"Fortinet, Inc.",FTNT,2018,Ken Xie
+"Fortinet, Inc.",FTNT,2019,Ken Xie
+"F5, Inc.",FFIV,2010,John McAdam
+"F5, Inc.",FFIV,2011,John McAdam
+"F5, Inc.",FFIV,2012,John McAdam
+"F5, Inc.",FFIV,2013,John McAdam
+"F5, Inc.",FFIV,2014,John McAdam
+"F5, Inc.",FFIV,2015,John McAdam
+"F5, Inc.",FFIV,2016,John McAdam
+"F5, Inc.",FFIV,2017,François Locoh-Donou
+"F5, Inc.",FFIV,2018,François Locoh-Donou
+"F5, Inc.",FFIV,2019,François Locoh-Donou
+"Arista Networks, Inc.",ANET,2010,Jayshree Ullal
+"Arista Networks, Inc.",ANET,2011,Jayshree Ullal
+"Arista Networks, Inc.",ANET,2012,Jayshree Ullal
+"Arista Networks, Inc.",ANET,2013,Jayshree Ullal
+"Arista Networks, Inc.",ANET,2014,Jayshree Ullal
+"Arista Networks, Inc.",ANET,2015,Jayshree Ullal
+"Arista Networks, Inc.",ANET,2016,Jayshree Ullal
+"Arista Networks, Inc.",ANET,2017,Jayshree Ullal
+"Arista Networks, Inc.",ANET,2018,Jayshree Ullal
+"Arista Networks, Inc.",ANET,2019,Jayshree Ullal
+"Motorola Solutions, Inc.",MSI,2010,Greg Brown
+"Motorola Solutions, Inc.",MSI,2011,Greg Brown
+"Motorola Solutions, Inc.",MSI,2012,Greg Brown
+"Motorola Solutions, Inc.",MSI,2013,Greg Brown
+"Motorola Solutions, Inc.",MSI,2014,Greg Brown
+"Motorola Solutions, Inc.",MSI,2015,Greg Brown
+"Motorola Solutions, Inc.",MSI,2016,Greg Brown
+"Motorola Solutions, Inc.",MSI,2017,Greg Brown
+"Motorola Solutions, Inc.",MSI,2018,Greg Brown
+"Motorola Solutions, Inc.",MSI,2019,Greg Brown
+Western Digital Corporation,WDC,2010,John Coyne
+Western Digital Corporation,WDC,2011,John Coyne
+Western Digital Corporation,WDC,2012,Stephen Milligan
+Western Digital Corporation,WDC,2013,Stephen Milligan
+Western Digital Corporation,WDC,2014,Stephen Milligan
+Western Digital Corporation,WDC,2015,Stephen Milligan
+Western Digital Corporation,WDC,2016,Stephen Milligan
+Western Digital Corporation,WDC,2017,Stephen Milligan
+Western Digital Corporation,WDC,2018,Stephen Milligan
+Western Digital Corporation,WDC,2019,Stephen Milligan
+Seagate Technology Holdings PLC,STX,2010,Stephen J. Luczo
+Seagate Technology Holdings PLC,STX,2011,Stephen J. Luczo
+Seagate Technology Holdings PLC,STX,2012,Stephen J. Luczo
+Seagate Technology Holdings PLC,STX,2013,Stephen J. Luczo
+Seagate Technology Holdings PLC,STX,2014,Stephen J. Luczo
+Seagate Technology Holdings PLC,STX,2015,Stephen J. Luczo
+Seagate Technology Holdings PLC,STX,2016,Stephen J. Luczo
+Seagate Technology Holdings PLC,STX,2017,Stephen J. Luczo
+Seagate Technology Holdings PLC,STX,2018,David Mosley
+Seagate Technology Holdings PLC,STX,2019,David Mosley
+"Xilinx, Inc.",XLNX,2010,Moshe Gavrielov
+"Xilinx, Inc.",XLNX,2011,Moshe Gavrielov
+"Xilinx, Inc.",XLNX,2012,Moshe Gavrielov
+"Xilinx, Inc.",XLNX,2013,Moshe Gavrielov
+"Xilinx, Inc.",XLNX,2014,Moshe Gavrielov
+"Xilinx, Inc.",XLNX,2015,Moshe Gavrielov
+"Xilinx, Inc.",XLNX,2016,Moshe Gavrielov
+"Xilinx, Inc.",XLNX,2017,Victor Peng
+"Xilinx, Inc.",XLNX,2018,Victor Peng
+"Xilinx, Inc.",XLNX,2019,Victor Peng
+NortonLifeLock Inc.,NLOK,2010,Enrique Salem
+NortonLifeLock Inc.,NLOK,2011,Enrique Salem
+NortonLifeLock Inc.,NLOK,2012,Steve Bennett
+NortonLifeLock Inc.,NLOK,2013,Steve Bennett
+NortonLifeLock Inc.,NLOK,2014,Michael A. Brown
+NortonLifeLock Inc.,NLOK,2015,Michael A. Brown
+NortonLifeLock Inc.,NLOK,2016,Greg Clark
+NortonLifeLock Inc.,NLOK,2017,Greg Clark
+NortonLifeLock Inc.,NLOK,2018,Greg Clark
+NortonLifeLock Inc.,NLOK,2019,Richard Hill (interim)
+"Akamai Technologies, Inc.",AKAM,2010,Paul Sagan
+"Akamai Technologies, Inc.",AKAM,2011,Paul Sagan
+"Akamai Technologies, Inc.",AKAM,2012,Paul Sagan
+"Akamai Technologies, Inc.",AKAM,2013,Tom Leighton
+"Akamai Technologies, Inc.",AKAM,2014,Tom Leighton
+"Akamai Technologies, Inc.",AKAM,2015,Tom Leighton
+"Akamai Technologies, Inc.",AKAM,2016,Tom Leighton
+"Akamai Technologies, Inc.",AKAM,2017,Tom Leighton
+"Akamai Technologies, Inc.",AKAM,2018,Tom Leighton
+"Akamai Technologies, Inc.",AKAM,2019,Tom Leighton
+"VeriSign, Inc.",VRSN,2010,Jim Bidzos
+"VeriSign, Inc.",VRSN,2011,Jim Bidzos
+"VeriSign, Inc.",VRSN,2012,Jim Bidzos
+"VeriSign, Inc.",VRSN,2013,Jim Bidzos
+"VeriSign, Inc.",VRSN,2014,Jim Bidzos
+"VeriSign, Inc.",VRSN,2015,Jim Bidzos
+"VeriSign, Inc.",VRSN,2016,Jim Bidzos
+"VeriSign, Inc.",VRSN,2017,Jim Bidzos
+"VeriSign, Inc.",VRSN,2018,Jim Bidzos
+"VeriSign, Inc.",VRSN,2019,Jim Bidzos
+"Keysight Technologies, Inc.",KEYS,2010,N/A (part of Agilent)
+"Keysight Technologies, Inc.",KEYS,2011,N/A (part of Agilent)
+"Keysight Technologies, Inc.",KEYS,2012,N/A (part of Agilent)
+"Keysight Technologies, Inc.",KEYS,2013,N/A (part of Agilent)
+"Keysight Technologies, Inc.",KEYS,2014,Ron Nersesian
+"Keysight Technologies, Inc.",KEYS,2015,Ron Nersesian
+"Keysight Technologies, Inc.",KEYS,2016,Ron Nersesian
+"Keysight Technologies, Inc.",KEYS,2017,Ron Nersesian
+"Keysight Technologies, Inc.",KEYS,2018,Ron Nersesian
+"Keysight Technologies, Inc.",KEYS,2019,Ron Nersesian
+"Gartner, Inc.",IT,2010,Gene Hall
+"Gartner, Inc.",IT,2011,Gene Hall
+"Gartner, Inc.",IT,2012,Gene Hall
+"Gartner, Inc.",IT,2013,Gene Hall
+"Gartner, Inc.",IT,2014,Gene Hall
+"Gartner, Inc.",IT,2015,Gene Hall
+"Gartner, Inc.",IT,2016,Gene Hall
+"Gartner, Inc.",IT,2017,Gene Hall
+"Gartner, Inc.",IT,2018,Gene Hall
+"Gartner, Inc.",IT,2019,Gene Hall
+"EPAM Systems, Inc.",EPAM,2010,Arkadiy Dobkin
+"EPAM Systems, Inc.",EPAM,2011,Arkadiy Dobkin
+"EPAM Systems, Inc.",EPAM,2012,Arkadiy Dobkin
+"EPAM Systems, Inc.",EPAM,2013,Arkadiy Dobkin
+"EPAM Systems, Inc.",EPAM,2014,Arkadiy Dobkin
+"EPAM Systems, Inc.",EPAM,2015,Arkadiy Dobkin
+"EPAM Systems, Inc.",EPAM,2016,Arkadiy Dobkin
+"EPAM Systems, Inc.",EPAM,2017,Arkadiy Dobkin
+"EPAM Systems, Inc.",EPAM,2018,Arkadiy Dobkin
+"EPAM Systems, Inc.",EPAM,2019,Arkadiy Dobkin
+"Jack Henry & Associates, Inc.",JKHY,2010,Jack Prim
+"Jack Henry & Associates, Inc.",JKHY,2011,Jack Prim
+"Jack Henry & Associates, Inc.",JKHY,2012,Jack Prim
+"Jack Henry & Associates, Inc.",JKHY,2013,Jack Prim
+"Jack Henry & Associates, Inc.",JKHY,2014,Jack Prim
+"Jack Henry & Associates, Inc.",JKHY,2015,Jack Prim
+"Jack Henry & Associates, Inc.",JKHY,2016,Jack Prim
+"Jack Henry & Associates, Inc.",JKHY,2017,David Foss
+"Jack Henry & Associates, Inc.",JKHY,2018,David Foss
+"Jack Henry & Associates, Inc.",JKHY,2019,David Foss
+CDW Corporation,CDW,2010,John A. Edwardson
+CDW Corporation,CDW,2011,John A. Edwardson
+CDW Corporation,CDW,2012,John A. Edwardson
+CDW Corporation,CDW,2013,Thomas E. Richards
+CDW Corporation,CDW,2014,Thomas E. Richards
+CDW Corporation,CDW,2015,Thomas E. Richards
+CDW Corporation,CDW,2016,Thomas E. Richards
+CDW Corporation,CDW,2017,Christine A. Leahy
+CDW Corporation,CDW,2018,Christine A. Leahy
+CDW Corporation,CDW,2019,Christine A. Leahy
+"ANSYS, Inc.",ANSS,2010,James Cashman
+"ANSYS, Inc.",ANSS,2011,James Cashman
+"ANSYS, Inc.",ANSS,2012,James Cashman
+"ANSYS, Inc.",ANSS,2013,James Cashman
+"ANSYS, Inc.",ANSS,2014,James Cashman
+"ANSYS, Inc.",ANSS,2015,James Cashman
+"ANSYS, Inc.",ANSS,2016,Ajei Gopal
+"ANSYS, Inc.",ANSS,2017,Ajei Gopal
+"ANSYS, Inc.",ANSS,2018,Ajei Gopal
+"ANSYS, Inc.",ANSS,2019,Ajei Gopal
+Amphenol Corporation,APH,2010,Martin H. Loeffler
+Amphenol Corporation,APH,2011,Martin H. Loeffler
+Amphenol Corporation,APH,2012,R. Adam Norwitt
+Amphenol Corporation,APH,2013,R. Adam Norwitt
+Amphenol Corporation,APH,2014,R. Adam Norwitt
+Amphenol Corporation,APH,2015,R. Adam Norwitt
+Amphenol Corporation,APH,2016,R. Adam Norwitt
+Amphenol Corporation,APH,2017,R. Adam Norwitt
+Amphenol Corporation,APH,2018,R. Adam Norwitt
+Amphenol Corporation,APH,2019,R. Adam Norwitt
+ON Semiconductor Corporation,ON,2010,Keith D. Jackson
+ON Semiconductor Corporation,ON,2011,Keith D. Jackson
+ON Semiconductor Corporation,ON,2012,Keith D. Jackson
+ON Semiconductor Corporation,ON,2013,Keith D. Jackson
+ON Semiconductor Corporation,ON,2014,Keith D. Jackson
+ON Semiconductor Corporation,ON,2015,Keith D. Jackson
+ON Semiconductor Corporation,ON,2016,Keith D. Jackson
+ON Semiconductor Corporation,ON,2017,Keith D. Jackson
+ON Semiconductor Corporation,ON,2018,Keith D. Jackson
+ON Semiconductor Corporation,ON,2019,Keith D. Jackson
+Microchip Technology Incorporated,MCHP,2010,Steve Sanghi
+Microchip Technology Incorporated,MCHP,2011,Steve Sanghi
+Microchip Technology Incorporated,MCHP,2012,Steve Sanghi
+Microchip Technology Incorporated,MCHP,2013,Steve Sanghi
+Microchip Technology Incorporated,MCHP,2014,Steve Sanghi
+Microchip Technology Incorporated,MCHP,2015,Steve Sanghi
+Microchip Technology Incorporated,MCHP,2016,Steve Sanghi
+Microchip Technology Incorporated,MCHP,2017,Steve Sanghi
+Microchip Technology Incorporated,MCHP,2018,Steve Sanghi
+Microchip Technology Incorporated,MCHP,2019,Steve Sanghi
+"Skyworks Solutions, Inc.",SWKS,2010,David J. Aldrich
+"Skyworks Solutions, Inc.",SWKS,2011,David J. Aldrich
+"Skyworks Solutions, Inc.",SWKS,2012,David J. Aldrich
+"Skyworks Solutions, Inc.",SWKS,2013,David J. Aldrich
+"Skyworks Solutions, Inc.",SWKS,2014,David J. Aldrich
+"Skyworks Solutions, Inc.",SWKS,2015,David J. Aldrich
+"Skyworks Solutions, Inc.",SWKS,2016,David J. Aldrich
+"Skyworks Solutions, Inc.",SWKS,2017,David J. Aldrich
+"Skyworks Solutions, Inc.",SWKS,2018,Liam Griffin
+"Skyworks Solutions, Inc.",SWKS,2019,Liam Griffin
+"Monolithic Power Systems, Inc.",MPWR,2010,Michael Hsing
+"Monolithic Power Systems, Inc.",MPWR,2011,Michael Hsing
+"Monolithic Power Systems, Inc.",MPWR,2012,Michael Hsing
+"Monolithic Power Systems, Inc.",MPWR,2013,Michael Hsing
+"Monolithic Power Systems, Inc.",MPWR,2014,Michael Hsing
+"Monolithic Power Systems, Inc.",MPWR,2015,Michael Hsing
+"Monolithic Power Systems, Inc.",MPWR,2016,Michael Hsing
+"Monolithic Power Systems, Inc.",MPWR,2017,Michael Hsing
+"Monolithic Power Systems, Inc.",MPWR,2018,Michael Hsing
+"Monolithic Power Systems, Inc.",MPWR,2019,Michael Hsing
+"Enphase Energy, Inc.",ENPH,2010,Paul Nahi
+"Enphase Energy, Inc.",ENPH,2011,Paul Nahi
+"Enphase Energy, Inc.",ENPH,2012,Paul Nahi
+"Enphase Energy, Inc.",ENPH,2013,Paul Nahi
+"Enphase Energy, Inc.",ENPH,2014,Paul Nahi
+"Enphase Energy, Inc.",ENPH,2015,Paul Nahi
+"Enphase Energy, Inc.",ENPH,2016,Paul Nahi
+"Enphase Energy, Inc.",ENPH,2017,Paul Nahi
+"Enphase Energy, Inc.",ENPH,2018,Badri Kothandaraman
+"Enphase Energy, Inc.",ENPH,2019,Badri Kothandaraman
+"SolarEdge Technologies, Inc.",SEDG,2010,Guy Sella
+"SolarEdge Technologies, Inc.",SEDG,2011,Guy Sella
+"SolarEdge Technologies, Inc.",SEDG,2012,Guy Sella
+"SolarEdge Technologies, Inc.",SEDG,2013,Guy Sella
+"SolarEdge Technologies, Inc.",SEDG,2014,Guy Sella
+"SolarEdge Technologies, Inc.",SEDG,2015,Guy Sella
+"SolarEdge Technologies, Inc.",SEDG,2016,Guy Sella
+"SolarEdge Technologies, Inc.",SEDG,2017,Guy Sella
+"SolarEdge Technologies, Inc.",SEDG,2018,Guy Sella
+"SolarEdge Technologies, Inc.",SEDG,2019,Zvi Lando
+Coherent Corp.,COHR,2010,John Ambroseo
+Coherent Corp.,COHR,2011,John Ambroseo
+Coherent Corp.,COHR,2012,John Ambroseo
+Coherent Corp.,COHR,2013,John Ambroseo
+Coherent Corp.,COHR,2014,John Ambroseo
+Coherent Corp.,COHR,2015,John Ambroseo
+Coherent Corp.,COHR,2016,John Ambroseo
+Coherent Corp.,COHR,2017,John Ambroseo
+Coherent Corp.,COHR,2018,John Ambroseo
+Coherent Corp.,COHR,2019,John Ambroseo
+"Teradyne, Inc.",TER,2010,Michael A. Bradley
+"Teradyne, Inc.",TER,2011,Michael A. Bradley
+"Teradyne, Inc.",TER,2012,Michael A. Bradley
+"Teradyne, Inc.",TER,2013,Mark E. Jagiela
+"Teradyne, Inc.",TER,2014,Mark E. Jagiela
+"Teradyne, Inc.",TER,2015,Mark E. Jagiela
+"Teradyne, Inc.",TER,2016,Mark E. Jagiela
+"Teradyne, Inc.",TER,2017,Mark E. Jagiela
+"Teradyne, Inc.",TER,2018,Mark E. Jagiela
+"Teradyne, Inc.",TER,2019,Mark E. Jagiela
+Zebra Technologies Corporation,ZBRA,2010,Anders Gustafsson
+Zebra Technologies Corporation,ZBRA,2011,Anders Gustafsson
+Zebra Technologies Corporation,ZBRA,2012,Anders Gustafsson
+Zebra Technologies Corporation,ZBRA,2013,Anders Gustafsson
+Zebra Technologies Corporation,ZBRA,2014,Anders Gustafsson
+Zebra Technologies Corporation,ZBRA,2015,Anders Gustafsson
+Zebra Technologies Corporation,ZBRA,2016,Anders Gustafsson
+Zebra Technologies Corporation,ZBRA,2017,Anders Gustafsson
+Zebra Technologies Corporation,ZBRA,2018,Anders Gustafsson
+Zebra Technologies Corporation,ZBRA,2019,Anders Gustafsson
+Trimble Inc.,TRMB,2010,Steven W. Berglund
+Trimble Inc.,TRMB,2011,Steven W. Berglund
+Trimble Inc.,TRMB,2012,Steven W. Berglund
+Trimble Inc.,TRMB,2013,Steven W. Berglund
+Trimble Inc.,TRMB,2014,Steven W. Berglund
+Trimble Inc.,TRMB,2015,Steven W. Berglund
+Trimble Inc.,TRMB,2016,Steven W. Berglund
+Trimble Inc.,TRMB,2017,Steven W. Berglund
+Trimble Inc.,TRMB,2018,Steven W. Berglund
+Trimble Inc.,TRMB,2019,Steven W. Berglund
+"Tyler Technologies, Inc.",TYL,2010,John S. Marr Jr.
+"Tyler Technologies, Inc.",TYL,2011,John S. Marr Jr.
+"Tyler Technologies, Inc.",TYL,2012,John S. Marr Jr.
+"Tyler Technologies, Inc.",TYL,2013,John S. Marr Jr.
+"Tyler Technologies, Inc.",TYL,2014,John S. Marr Jr.
+"Tyler Technologies, Inc.",TYL,2015,John S. Marr Jr.
+"Tyler Technologies, Inc.",TYL,2016,John S. Marr Jr.
+"Tyler Technologies, Inc.",TYL,2017,John S. Marr Jr.
+"Tyler Technologies, Inc.",TYL,2018,John S. Marr Jr.
+"Tyler Technologies, Inc.",TYL,2019,Lynn Moore Jr.
+Cognizant Technology Solutions Corporation,CTSH,2010,Francisco D’Souza
+Cognizant Technology Solutions Corporation,CTSH,2011,Francisco D’Souza
+Cognizant Technology Solutions Corporation,CTSH,2012,Francisco D’Souza
+Cognizant Technology Solutions Corporation,CTSH,2013,Francisco D’Souza
+Cognizant Technology Solutions Corporation,CTSH,2014,Francisco D’Souza
+Cognizant Technology Solutions Corporation,CTSH,2015,Francisco D’Souza
+Cognizant Technology Solutions Corporation,CTSH,2016,Francisco D’Souza
+Cognizant Technology Solutions Corporation,CTSH,2017,Francisco D’Souza
+Cognizant Technology Solutions Corporation,CTSH,2018,Francisco D’Souza
+Cognizant Technology Solutions Corporation,CTSH,2019,Brian Humphries
+DXC Technology Company,DXC,2010,N/A
+DXC Technology Company,DXC,2011,N/A
+DXC Technology Company,DXC,2012,N/A
+DXC Technology Company,DXC,2013,N/A
+DXC Technology Company,DXC,2014,N/A
+DXC Technology Company,DXC,2015,N/A
+DXC Technology Company,DXC,2016,N/A
+DXC Technology Company,DXC,2017,Mike Lawrie
+DXC Technology Company,DXC,2018,Mike Lawrie
+DXC Technology Company,DXC,2019,Mike Lawrie
+"Leidos Holdings, Inc.",LDOS,2010,John Jumper
+"Leidos Holdings, Inc.",LDOS,2011,John Jumper
+"Leidos Holdings, Inc.",LDOS,2012,John Jumper
+"Leidos Holdings, Inc.",LDOS,2013,John Jumper
+"Leidos Holdings, Inc.",LDOS,2014,Roger Krone
+"Leidos Holdings, Inc.",LDOS,2015,Roger Krone
+"Leidos Holdings, Inc.",LDOS,2016,Roger Krone
+"Leidos Holdings, Inc.",LDOS,2017,Roger Krone
+"Leidos Holdings, Inc.",LDOS,2018,Roger Krone
+"Leidos Holdings, Inc.",LDOS,2019,Roger Krone
+Science Applications International Corporation,SAIC,2010,Walt Havenstein
+Science Applications International Corporation,SAIC,2011,Walt Havenstein
+Science Applications International Corporation,SAIC,2012,Walt Havenstein
+Science Applications International Corporation,SAIC,2013,Anthony Moraco
+Science Applications International Corporation,SAIC,2014,Anthony Moraco
+Science Applications International Corporation,SAIC,2015,Anthony Moraco
+Science Applications International Corporation,SAIC,2016,Anthony Moraco
+Science Applications International Corporation,SAIC,2017,Anthony Moraco
+Science Applications International Corporation,SAIC,2018,Anthony Moraco
+Science Applications International Corporation,SAIC,2019,Nazzic Keene
+"Lumen Technologies, Inc.",LUMN,2010,Glen F. Post III
+"Lumen Technologies, Inc.",LUMN,2011,Glen F. Post III
+"Lumen Technologies, Inc.",LUMN,2012,Glen F. Post III
+"Lumen Technologies, Inc.",LUMN,2013,Glen F. Post III
+"Lumen Technologies, Inc.",LUMN,2014,Glen F. Post III
+"Lumen Technologies, Inc.",LUMN,2015,Glen F. Post III
+"Lumen Technologies, Inc.",LUMN,2016,Glen F. Post III
+"Lumen Technologies, Inc.",LUMN,2017,Glen F. Post III
+"Lumen Technologies, Inc.",LUMN,2018,Jeff Storey
+"Lumen Technologies, Inc.",LUMN,2019,Jeff Storey
+Corning Incorporated,GLW,2010,Wendell P. Weeks
+Corning Incorporated,GLW,2011,Wendell P. Weeks
+Corning Incorporated,GLW,2012,Wendell P. Weeks
+Corning Incorporated,GLW,2013,Wendell P. Weeks
+Corning Incorporated,GLW,2014,Wendell P. Weeks
+Corning Incorporated,GLW,2015,Wendell P. Weeks
+Corning Incorporated,GLW,2016,Wendell P. Weeks
+Corning Incorporated,GLW,2017,Wendell P. Weeks
+Corning Incorporated,GLW,2018,Wendell P. Weeks
+Corning Incorporated,GLW,2019,Wendell P. Weeks
+"NetApp, Inc.",NTAP,2010,Tom Georgens
+"NetApp, Inc.",NTAP,2011,Tom Georgens
+"NetApp, Inc.",NTAP,2012,Tom Georgens
+"NetApp, Inc.",NTAP,2013,Tom Georgens
+"NetApp, Inc.",NTAP,2014,Tom Georgens
+"NetApp, Inc.",NTAP,2015,Tom Georgens
+"NetApp, Inc.",NTAP,2016,George Kurian
+"NetApp, Inc.",NTAP,2017,George Kurian
+"NetApp, Inc.",NTAP,2018,George Kurian
+"NetApp, Inc.",NTAP,2019,George Kurian
+"Citrix Systems, Inc.",CTXS,2010,Mark Templeton
+"Citrix Systems, Inc.",CTXS,2011,Mark Templeton
+"Citrix Systems, Inc.",CTXS,2012,Mark Templeton
+"Citrix Systems, Inc.",CTXS,2013,Mark Templeton
+"Citrix Systems, Inc.",CTXS,2014,Mark Templeton
+"Citrix Systems, Inc.",CTXS,2015,Mark Templeton
+"Citrix Systems, Inc.",CTXS,2016,Kirill Tatarinov
+"Citrix Systems, Inc.",CTXS,2017,David J. Henshall
+"Citrix Systems, Inc.",CTXS,2018,David J. Henshall
+"Citrix Systems, Inc.",CTXS,2019,David J. Henshall
+"Juniper Networks, Inc.",JNPR,2010,Kevin Johnson
+"Juniper Networks, Inc.",JNPR,2011,Kevin Johnson
+"Juniper Networks, Inc.",JNPR,2012,Kevin Johnson
+"Juniper Networks, Inc.",JNPR,2013,Shaygan Kheradpir
+"Juniper Networks, Inc.",JNPR,2014,Rami Rahim
+"Juniper Networks, Inc.",JNPR,2015,Rami Rahim
+"Juniper Networks, Inc.",JNPR,2016,Rami Rahim
+"Juniper Networks, Inc.",JNPR,2017,Rami Rahim
+"Juniper Networks, Inc.",JNPR,2018,Rami Rahim
+"Juniper Networks, Inc.",JNPR,2019,Rami Rahim
+"CommScope Holding Company, Inc.",COMM,2010,Eddie Edwards
+"CommScope Holding Company, Inc.",COMM,2011,Eddie Edwards
+"CommScope Holding Company, Inc.",COMM,2012,Eddie Edwards
+"CommScope Holding Company, Inc.",COMM,2013,Eddie Edwards
+"CommScope Holding Company, Inc.",COMM,2014,Eddie Edwards
+"CommScope Holding Company, Inc.",COMM,2015,Eddie Edwards
+"CommScope Holding Company, Inc.",COMM,2016,Eddie Edwards
+"CommScope Holding Company, Inc.",COMM,2017,Eddie Edwards
+"CommScope Holding Company, Inc.",COMM,2018,Eddie Edwards
+"CommScope Holding Company, Inc.",COMM,2019,Eddie Edwards
+Ciena Corporation,CIEN,2010,Gary Smith
+Ciena Corporation,CIEN,2011,Gary Smith
+Ciena Corporation,CIEN,2012,Gary Smith
+Ciena Corporation,CIEN,2013,Gary Smith
+Ciena Corporation,CIEN,2014,Gary Smith
+Ciena Corporation,CIEN,2015,Gary Smith
+Ciena Corporation,CIEN,2016,Gary Smith
+Ciena Corporation,CIEN,2017,Gary Smith
+Ciena Corporation,CIEN,2018,Gary Smith
+Ciena Corporation,CIEN,2019,Gary Smith
+"Aruba Networks, Inc.",ARUN,2010,Dominic Orr
+"Aruba Networks, Inc.",ARUN,2011,Dominic Orr
+"Aruba Networks, Inc.",ARUN,2012,Dominic Orr
+"Aruba Networks, Inc.",ARUN,2013,Dominic Orr
+"Aruba Networks, Inc.",ARUN,2014,Dominic Orr
+"Aruba Networks, Inc.",ARUN,2015,Dominic Orr
+"Aruba Networks, Inc.",ARUN,2016,Part of HPE
+"Aruba Networks, Inc.",ARUN,2017,Part of HPE
+"Aruba Networks, Inc.",ARUN,2018,Part of HPE
+"Aruba Networks, Inc.",ARUN,2019,Part of HPE
+"Palo Alto Networks, Inc.",PANW,2010,Lane Bess
+"Palo Alto Networks, Inc.",PANW,2011,Mark McLaughlin
+"Palo Alto Networks, Inc.",PANW,2012,Mark McLaughlin
+"Palo Alto Networks, Inc.",PANW,2013,Mark McLaughlin
+"Palo Alto Networks, Inc.",PANW,2014,Mark McLaughlin
+"Palo Alto Networks, Inc.",PANW,2015,Mark McLaughlin
+"Palo Alto Networks, Inc.",PANW,2016,Mark McLaughlin
+"Palo Alto Networks, Inc.",PANW,2017,Mark McLaughlin
+"Palo Alto Networks, Inc.",PANW,2018,Nikesh Arora
+"Palo Alto Networks, Inc.",PANW,2019,Nikesh Arora
+Check Point Software Technologies Ltd.,CHKP,2010,Gil Shwed
+Check Point Software Technologies Ltd.,CHKP,2011,Gil Shwed
+Check Point Software Technologies Ltd.,CHKP,2012,Gil Shwed
+Check Point Software Technologies Ltd.,CHKP,2013,Gil Shwed
+Check Point Software Technologies Ltd.,CHKP,2014,Gil Shwed
+Check Point Software Technologies Ltd.,CHKP,2015,Gil Shwed
+Check Point Software Technologies Ltd.,CHKP,2016,Gil Shwed
+Check Point Software Technologies Ltd.,CHKP,2017,Gil Shwed
+Check Point Software Technologies Ltd.,CHKP,2018,Gil Shwed
+Check Point Software Technologies Ltd.,CHKP,2019,Gil Shwed
+"VMware, Inc.",VMW,2010,Paul Maritz
+"VMware, Inc.",VMW,2011,Paul Maritz
+"VMware, Inc.",VMW,2012,Pat Gelsinger
+"VMware, Inc.",VMW,2013,Pat Gelsinger
+"VMware, Inc.",VMW,2014,Pat Gelsinger
+"VMware, Inc.",VMW,2015,Pat Gelsinger
+"VMware, Inc.",VMW,2016,Pat Gelsinger
+"VMware, Inc.",VMW,2017,Pat Gelsinger
+"VMware, Inc.",VMW,2018,Pat Gelsinger
+"VMware, Inc.",VMW,2019,Pat Gelsinger

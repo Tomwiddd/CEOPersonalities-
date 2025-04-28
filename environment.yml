@@ -10,6 +10,9 @@ dependencies:
   - requests
   - jupyter
   - ipykernel
+  - matplotlib
+  - seaborn
+  - numpy
   - pip
   - pip:
     - webdriver_manager

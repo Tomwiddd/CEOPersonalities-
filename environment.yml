@@ -1,0 +1,18 @@
+name: selenium_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11.5
+  - selenium
+  - pandas
+  - beautifulsoup4
+  - requests
+  - jupyter
+  - ipykernel
+  - matplotlib
+  - seaborn
+  - numpy
+  - pip
+  - pip:
+    - webdriver_manager

@@ -70,6 +70,9 @@ def color_correlation(val):
         color = 'black'
     return f'color: {color}'
 
+st.title("Study of CEO Headshot Attributes and Firm Returns")  # Make sure this runs
+
+
 
 # --- How to Run ---
 # 1. Save the code above as a Python file (e.g., `ceo_app.py`).

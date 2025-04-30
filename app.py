@@ -40,6 +40,9 @@ except Exception as e:
     st.error(f"Failed to load CEO data: {e}")
     st.stop()
 
+st.write("Tickers after filtering:", ceo_df['Ticker'].unique())
+st.write("Total rows after filtering:", len(ceo_df))
+
 # --- Correlation Data ---
 correlation_data = {
     'Attribute': [

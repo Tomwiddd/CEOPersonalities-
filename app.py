@@ -30,7 +30,7 @@ except Exception as e:
 
 # --- Load CEO Data ---
 try:
-    ceo_file = "inputs/ceo_face_analysis.csv"
+    ceo_file = "ceo_face_analysis.csv"
     ceo_df = pd.read_csv(ceo_file)
     ceo_df.columns = ceo_df.columns.str.strip()  # Strip whitespace
     ceo_df['Tenure Start'] = pd.to_datetime(ceo_df['Tenure Start'])

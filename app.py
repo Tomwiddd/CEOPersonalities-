@@ -15,7 +15,7 @@ def load_returns_data():
     returns_file = "outputs/output_yearly.csv"
     if os.path.exists(returns_file):
         df = pd.read_csv(returns_file)
-        df['Date'] = pd.to_datetime(df['Date'])
+        df['Date'] = pd.to_datetime(df['Year'])
         df.set_index('Date', inplace=True)
         return df
     else:

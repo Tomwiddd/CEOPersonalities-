@@ -12,14 +12,14 @@ st.title("Study of CEO Headshot Attributes and Firm Returns")
 # --- Load Returns Data ---
 @st.cache_data
 def load_returns_data():
-    returns_file = "inputs/firm_returns.csv"
+    returns_file = "outputs/output_yearly.csv"
     if os.path.exists(returns_file):
         df = pd.read_csv(returns_file)
         df['Date'] = pd.to_datetime(df['Date'])
         df.set_index('Date', inplace=True)
         return df
     else:
-        st.error("firm_returns.csv not found.")
+        st.error("output_yearly.csv not found.")
         st.stop()
 
 try:
@@ -30,7 +30,7 @@ except Exception as e:
 
 # --- Load CEO Data ---
 try:
-    ceo_file = "ceo_face_analysis.csv"
+    ceo_file = "outputs/output_yearly.csv"
     ceo_df = pd.read_csv(ceo_file)
     ceo_df.columns = ceo_df.columns.str.strip()
     ceo_df['Ticker'] = ceo_df['Ticker'].str.strip().str.upper()  # Ensure consistent formatting
@@ -80,7 +80,7 @@ with col2:
     st.subheader("View attributes by Company")
 
     # Dropdown for selecting company (all tickers)
-    all_tickers = sorted(ceo_df['Ticker'].dropna().unique())  # Keep all tickers (unique only for dropdown)
+    all_tickers = sorted(ceo_df['Ticker'].unique())  # Keep all tickers (unique only for dropdown)
     selected_company = st.selectbox("Please select company", all_tickers)
 
     allowed_years = list(range(2010, 2020))
@@ -106,7 +106,7 @@ with col2:
                 st.image(image_path, width=200)
             else:
                 st.info("Image not available for this CEO/year.")
-            firm_return = selected_data.get('Firm Return')
+            firm_return = selected_data.get('Tenure_Cum_Ret_Overall')
             if pd.notna(firm_return):
                 st.metric(label="Firm Return", value=f"{firm_return:.1f}")
             else:

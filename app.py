@@ -91,7 +91,7 @@ with col2:
     ]
 
     if filtered_data.empty:
-        st.warning("⚠️ No data available for this company and year.")
+        st.warning("No data available for this company and year.")
         selected_data = None
     else:
         selected_data = filtered_data.iloc[0]

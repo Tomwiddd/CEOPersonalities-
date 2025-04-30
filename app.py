@@ -33,7 +33,7 @@ try:
     ceo_file = "ceo_face_analysis_with_paths.csv"
     ceo_df = pd.read_csv(ceo_file)
     ceo_df.columns = ceo_df.columns.str.strip()
-    ceo_df['Year'] = pd.to_datetime(ceo_df['Year'], errors='coerce').dt.year
+    ceo_df['Year'] = pd.to_numeric(ceo_df['Year'], errors='coerce').astype('Int64')
     ceo_df = ceo_df[(ceo_df['Year'] >= 2010) & (ceo_df['Year'] <= 2019)]  # Filter years
 except Exception as e:
     st.error(f"Failed to load CEO data: {e}")

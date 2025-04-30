@@ -40,13 +40,6 @@ except Exception as e:
     st.error(f"Failed to load CEO data: {e}")
     st.stop()
 
-# --- Get Unique Tickers ---
-unique_tickers = ceo_df['Ticker'].dropna().unique()  # Remove NaN values and get unique tickers
-unique_tickers_sorted = sorted(unique_tickers)  # Sort them for the dropdown
-
-# Debug: Check tickers for the dropdown
-st.write("Unique Tickers for Dropdown:", unique_tickers_sorted)
-
 # --- Correlation Data ---
 correlation_data = {
     'Attribute': [
@@ -86,8 +79,9 @@ with col1:
 with col2:
     st.subheader("View attributes by Company")
 
-    # Dropdown for selecting company (with unique tickers)
-    selected_company = st.selectbox("Please select company", unique_tickers_sorted)
+    # Dropdown for selecting company (all tickers)
+    all_tickers = sorted(ceo_df['Ticker'].dropna().unique())  # Keep all tickers (unique only for dropdown)
+    selected_company = st.selectbox("Please select company", all_tickers)
 
     allowed_years = list(range(2010, 2020))
     selected_year = st.selectbox("Please select year", allowed_years)

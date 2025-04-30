@@ -11,7 +11,7 @@ import seaborn as sns
 @st.cache_data
 def load_returns_data():
     # Update this path to where your CSV file is located
-    returns_file = "monthly_returns_2010_2025.csv"
+    returns_file = "inputs/firm_returns.csv"
     if os.path.exists(returns_file):
         # Assuming CSV has columns like Date, AAPL, META, SPY, etc.
         df = pd.read_csv(returns_file)
@@ -21,13 +21,13 @@ def load_returns_data():
         return df
     else:
         # If file doesn't exist, create dummy data for demonstration
-        date_range = pd.date_range(start='2010-01-01', end='2025-12-31', freq='M')
-        tickers = ['AAPL', 'META', 'MSFT', 'GOOGL', 'AMZN', 'SPY']
+        date_range = pd.date_range(start='2010-01-01', end='2025-12-31', freq='Y')
+      #  tickers = ['AAPL', 'META', 'MSFT', 'GOOGL', 'AMZN', 'SPY']
         
         # Create random returns with some correlation
         np.random.seed(42)  # For reproducibility
         n_dates = len(date_range)
-        n_tickers = len(tickers)
+       # n_tickers = len(tickers)
         
         # Base market return (SPY like)
         market_returns = np.random.normal(0.008, 0.04, n_dates)  # Monthly mean ~1%, SD ~4%
@@ -76,30 +76,7 @@ def color_correlation(val):
     return f'color: {color}'
 
 # 2. CEO/Company Data (Extended with tenure information)
-ceo_data = {
-    'Company': ['AAPL', 'AAPL', 'META', 'META'],
-    'Year': [2019, 2020, 2019, 2020],
-    'CEO': ['Tim Cook', 'Tim Cook', 'Mark Zuckerberg', 'Mark Zuckerberg'],
-    'Sex': ['M', 'M', 'M', 'M'],
-    'Race': ['W', 'W', 'W', 'W'], # Using 'W' as placeholder based on image
-    'Age': [58, 59, 35, 36], # Example ages
-    'Angry': [0.01, 0.02, 0.03, 0.01], # Random sentiment scores
-    'Disgust': [0.05, 0.04, 0.06, 0.07],
-    'Fear': [0.00, 0.01, 0.00, 0.02],
-    'Happy': [0.10, 0.15, 0.08, 0.12],
-    'Sad': [0.02, 0.01, 0.03, 0.02],
-    'Surprise': [0.00, 0.00, 0.01, 0.00],
-    'Neutral': [0.70, 0.65, 0.75, 0.70],
-    'Attractiveness': [0.7, 0.72, 0.65, 0.66],
-    'Firm Return': [0.1, 0.15, 0.08, 0.12], # Example firm returns
-    'Tenure Start': ['2011-08-24', '2011-08-24', '2004-02-04', '2004-02-04'],  # Adding CEO tenure start
-    'Image URL': [
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Visit_of_Tim_Cook_to_the_European_Commission_-_P061904-946789.jpg/1024px-Visit_of_Tim_Cook_to_the_European_Commission_-_P061904-946789.jpg', # Example URL for Tim Cook
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Visit_of_Tim_Cook_to_the_European_Commission_-_P061904-946789.jpg/1024px-Visit_of_Tim_Cook_to_the_European_Commission_-_P061904-946789.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg/440px-Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg', # Example URL for Mark Zuckerberg
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg/440px-Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg'
-    ]
-}
+ceo_data = "ceo_face_analysis.csv"
 ceo_df = pd.DataFrame(ceo_data)
 ceo_df['Tenure Start'] = pd.to_datetime(ceo_df['Tenure Start'])
 

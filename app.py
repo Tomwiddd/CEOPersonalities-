@@ -37,7 +37,7 @@ def load_returns_data():
 ceo_file = "ceo_face_analysis.csv"
 if os.path.exists(ceo_file):
     ceo_df = pd.read_csv(ceo_file)
-    ceo_df['Tenure Start'] = pd.to_datetime(ceo_df['Tenure Start'])
+    ceo_df['Year'] = pd.to_datetime(ceo_df['Year'])
 else:
     st.error(f"CEO data file not found: {ceo_file}")
     st.stop()

@@ -30,7 +30,7 @@ except Exception as e:
 
 # --- Load CEO Data ---
 try:
-    ceo_file = "ceo_face_analysis_with_paths.csv"
+    ceo_file = "ceo_face_analysis.csv"
     ceo_df = pd.read_csv(ceo_file)
     ceo_df.columns = ceo_df.columns.str.strip()
     ceo_df['Ticker'] = ceo_df['Ticker'].str.strip().str.upper()

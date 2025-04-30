@@ -32,8 +32,9 @@ except Exception as e:
 try:
     ceo_file = "ceo_face_analysis_with_paths.csv"
     ceo_df = pd.read_csv(ceo_file)
-    ceo_df.columns = ceo_df.columns.str.strip()  # Strip whitespace
-    ceo_df['Year'] = pd.to_datetime(ceo_df['Year'])
+    ceo_df.columns = ceo_df.columns.str.strip()
+    ceo_df['Year'] = pd.to_datetime(ceo_df['Year'], errors='coerce').dt.year
+    ceo_df = ceo_df[(ceo_df['Year'] >= 2010) & (ceo_df['Year'] <= 2019)]  # Filter years
 except Exception as e:
     st.error(f"Failed to load CEO data: {e}")
     st.stop()
@@ -83,14 +84,19 @@ with col2:
     available_years = sorted(ceo_df[ceo_df['Ticker'] == selected_company]['Year'].unique())
     selected_year = st.selectbox("Please select year", available_years)
 
-    selected_data = ceo_df[(ceo_df['Ticker'] == selected_company) & 
-                           (ceo_df['Year'] == selected_year)].iloc[0]
+    filtered_data = ceo_df[(ceo_df['Ticker'] == selected_company) & (ceo_df['Year'] == selected_year)]
+
+    if filtered_data.empty:
+        st.warning("No data found for selected company and year.")
+        st.stop()
+    else:
+        selected_data = filtered_data.iloc[0]
 
     info_col, img_col = st.columns([1, 1])
 
     with img_col:
-        if pd.notna(selected_data['Image URL']):
-            st.image(selected_data['Image URL'], width=200)
+        if pd.notna(selected_data['Image Path']) and os.path.exists(selected_data['Image Path']):
+            st.image(selected_data['Image Path'], width=200)
         else:
             st.write("Image not available")
         st.metric(label="Firm Return", value=f"{selected_data['Firm Return']:.1f}")

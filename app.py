@@ -40,6 +40,9 @@ except Exception as e:
     st.error(f"Failed to load CEO data: {e}")
     st.stop()
 
+# --- Get Unique Tickers without removing duplicates from DataFrame ---
+unique_tickers = sorted(ceo_df['Ticker'].dropna().unique())  # Get unique tickers
+
 st.write("Tickers after filtering:", ceo_df['Ticker'].unique())
 st.write("Total rows after filtering:", len(ceo_df))
 

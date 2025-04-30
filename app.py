@@ -78,44 +78,53 @@ with col1:
 with col2:
     st.subheader("View attributes by Company")
 
-    available_companies = sorted(ceo_df['Ticker'].unique())
-    selected_company = st.selectbox("Please select company", available_companies)
+    # All tickers from the dataset
+    all_tickers = sorted(ceo_df['Ticker'].dropna().unique())
+    selected_company = st.selectbox("Please select company", all_tickers)
 
-    available_years = sorted(ceo_df[ceo_df['Ticker'] == selected_company]['Year'].unique())
-    selected_year = st.selectbox("Please select year", available_years)
+    # Years 2010 to 2019
+    allowed_years = list(range(2010, 2020))
+    selected_year = st.selectbox("Please select year", allowed_years)
 
-    filtered_data = ceo_df[(ceo_df['Ticker'] == selected_company) & (ceo_df['Year'] == selected_year)]
+    # Filter data for selected ticker and year
+    filtered_data = ceo_df[
+        (ceo_df['Ticker'] == selected_company) &
+        (ceo_df['Year'] == selected_year)
+    ]
 
+    # If no data exists for that ticker-year combo
     if filtered_data.empty:
-        st.warning("No data found for selected company and year.")
-        st.stop()
+        st.warning("⚠️ No data available for this company and year.")
     else:
         selected_data = filtered_data.iloc[0]
 
-    info_col, img_col = st.columns([1, 1])
+        # Split layout: info and image
+        info_col, img_col = st.columns([1, 1])
 
-    with img_col:
-        if pd.notna(selected_data['Image Path']) and os.path.exists(selected_data['Image Path']):
-            st.image(selected_data['Image Path'], width=200)
-        else:
-            st.write("Image not available")
-        st.metric(label="Firm Return", value=f"{selected_data['Firm Return']:.1f}")
+        with img_col:
+            image_path = selected_data.get('Image Path')
+            if pd.notna(image_path) and os.path.exists(image_path):
+                st.image(image_path, width=200)
+            else:
+                st.info("Image not available for this CEO/year.")
+            st.metric(label="Firm Return", value=f"{selected_data['Firm Return']:.1f}")
 
-    with info_col:
-        st.text(f"Company: {selected_data['Ticker']}")
-        st.text(f"Year: {selected_data['Year']}")
-        st.text(f"CEO: {selected_data['CEO']}")
-        st.text(f"Sex: {selected_data['Sex']}")
-        st.text(f"Race (inferred): {selected_data['Race']}")
-        st.text(f"Age: {selected_data['Age']}")
-        st.text(f"Angry: {selected_data['Angry']:.2f}")
-        st.text(f"Disgust: {selected_data['Disgust']:.2f}")
-        st.text(f"Fear: {selected_data['Fear']:.2f}")
-        st.text(f"Happy: {selected_data['Happy']:.2f}")
-        st.text(f"Sad: {selected_data['Sad']:.2f}")
-        st.text(f"Surprise: {selected_data['Surprise']:.2f}")
-        st.text(f"Neutral: {selected_data['Neutral']:.2f}")
-        st.text(f"Attractiveness: {selected_data['Attractiveness']:.1f}")
+        with info_col:
+            st.text(f"Company: {selected_data['Ticker']}")
+            st.text(f"Year: {selected_data['Year']}")
+            st.text(f"CEO: {selected_data['CEO']}")
+            st.text(f"Sex: {selected_data['Sex']}")
+            st.text(f"Race (inferred): {selected_data['Race']}")
+            st.text(f"Age: {selected_data['Age']}")
+            st.text(f"Angry: {selected_data['Angry']:.2f}")
+            st.text(f"Disgust: {selected_data['Disgust']:.2f}")
+            st.text(f"Fear: {selected_data['Fear']:.2f}")
+            st.text(f"Happy: {selected_data['Happy']:.2f}")
+            st.text(f"Sad: {selected_data['Sad']:.2f}")
+            st.text(f"Surprise: {selected_data['Surprise']:.2f}")
+            st.text(f"Neutral: {selected_data['Neutral']:.2f}")
+            st.text(f"Attractiveness: {selected_data['Attractiveness']:.1f}")
+
 
 # --- Cumulative Returns Plot ---
 st.subheader(f"Cumulative Returns During {selected_data['CEO']}'s Tenure")

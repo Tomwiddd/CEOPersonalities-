@@ -33,18 +33,19 @@ try:
     ceo_file = "ceo_face_analysis.csv"
     ceo_df = pd.read_csv(ceo_file)
     ceo_df.columns = ceo_df.columns.str.strip()
-    ceo_df['Ticker'] = ceo_df['Ticker'].str.strip().str.upper()
+    ceo_df['Ticker'] = ceo_df['Ticker'].str.strip().str.upper()  # Ensure consistent formatting
     ceo_df['Year'] = pd.to_numeric(ceo_df['Year'], errors='coerce').astype('Int64')
     ceo_df = ceo_df[(ceo_df['Year'] >= 2010) & (ceo_df['Year'] <= 2019)]
 except Exception as e:
     st.error(f"Failed to load CEO data: {e}")
     st.stop()
 
-# --- Get Unique Tickers without removing duplicates from DataFrame ---
-unique_tickers = sorted(ceo_df['Ticker'].dropna().unique())  # Get unique tickers
+# --- Get Unique Tickers ---
+unique_tickers = ceo_df['Ticker'].dropna().unique()  # Remove NaN values and get unique tickers
+unique_tickers_sorted = sorted(unique_tickers)  # Sort them for the dropdown
 
-st.write("Tickers after filtering:", ceo_df['Ticker'].unique())
-st.write("Total rows after filtering:", len(ceo_df))
+# Debug: Check tickers for the dropdown
+st.write("Unique Tickers for Dropdown:", unique_tickers_sorted)
 
 # --- Correlation Data ---
 correlation_data = {
@@ -85,12 +86,13 @@ with col1:
 with col2:
     st.subheader("View attributes by Company")
 
-    all_tickers = sorted(ceo_df['Ticker'].dropna().str.strip().str.upper().unique())
-    selected_company = st.selectbox("Please select company", all_tickers)
+    # Dropdown for selecting company (with unique tickers)
+    selected_company = st.selectbox("Please select company", unique_tickers_sorted)
 
     allowed_years = list(range(2010, 2020))
     selected_year = st.selectbox("Please select year", allowed_years)
 
+    # Filter data based on selected company and year
     filtered_data = ceo_df[
         (ceo_df['Ticker'] == selected_company) &
         (ceo_df['Year'] == selected_year)

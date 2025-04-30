@@ -12,7 +12,7 @@ st.title("Study of CEO Headshot Attributes and Firm Returns")
 # --- Load Returns Data ---
 @st.cache_data
 def load_returns_data():
-    returns_file = "outputs/output_yearly.csv"
+    returns_file = "outputs/output_yearlywfilepath.csv"
     if os.path.exists(returns_file):
         df = pd.read_csv(returns_file)
         df['Date'] = pd.to_datetime(df['Year'])
@@ -30,7 +30,7 @@ except Exception as e:
 
 # --- Load CEO Data ---
 try:
-    ceo_file = "outputs/output_yearly.csv"
+    ceo_file = "outputs/output_yearlywfilepath.csv"
     ceo_df = pd.read_csv(ceo_file)
     ceo_df.columns = ceo_df.columns.str.strip()
     ceo_df['Ticker'] = ceo_df['Ticker'].str.strip().str.upper()  # Ensure consistent formatting

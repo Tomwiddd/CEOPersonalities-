@@ -33,7 +33,7 @@ try:
     ceo_file = "ceo_face_analysis.csv"
     ceo_df = pd.read_csv(ceo_file)
     ceo_df.columns = ceo_df.columns.str.strip()  # Strip whitespace
-    ceo_df['Tenure Start'] = pd.to_datetime(ceo_df['Tenure Start'])
+    ceo_df['Year'] = pd.to_datetime(ceo_df['Year'])
 except Exception as e:
     st.error(f"Failed to load CEO data: {e}")
     st.stop()

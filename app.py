@@ -77,13 +77,13 @@ with col1:
 with col2:
     st.subheader("View attributes by Company")
 
-    available_companies = sorted(ceo_df['Company'].unique())
+    available_companies = sorted(ceo_df['Ticker'].unique())
     selected_company = st.selectbox("Please select company", available_companies)
 
-    available_years = sorted(ceo_df[ceo_df['Company'] == selected_company]['Year'].unique())
+    available_years = sorted(ceo_df[ceo_df['Ticker'] == selected_company]['Year'].unique())
     selected_year = st.selectbox("Please select year", available_years)
 
-    selected_data = ceo_df[(ceo_df['Company'] == selected_company) & 
+    selected_data = ceo_df[(ceo_df['Ticker'] == selected_company) & 
                            (ceo_df['Year'] == selected_year)].iloc[0]
 
     info_col, img_col = st.columns([1, 1])
@@ -96,7 +96,7 @@ with col2:
         st.metric(label="Firm Return", value=f"{selected_data['Firm Return']:.1f}")
 
     with info_col:
-        st.text(f"Company: {selected_data['Company']}")
+        st.text(f"Company: {selected_data['Ticker']}")
         st.text(f"Year: {selected_data['Year']}")
         st.text(f"CEO: {selected_data['CEO']}")
         st.text(f"Sex: {selected_data['Sex']}")

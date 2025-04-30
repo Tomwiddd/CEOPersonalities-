@@ -79,7 +79,7 @@ with col1:
 with col2:
     st.subheader("View attributes by Company")
 
-    all_tickers = sorted(raw_df['Ticker'].dropna().str.strip().str.upper().unique())
+    all_tickers = sorted(ceo_df['Ticker'].dropna().str.strip().str.upper().unique())
     selected_company = st.selectbox("Please select company", all_tickers)
 
     allowed_years = list(range(2010, 2020))

@@ -144,3 +144,11 @@ def plot_cumulative_returns_by_ceo(ticker, ceo_name, ceo_df, returns_df):
     plt.xticks(rotation=45)
     plt.tight_layout()
     return fig
+if selected_data is not None:
+    ceo_name = selected_data.get('CEO')
+    if ceo_name and selected_company:
+        fig = plot_cumulative_returns_by_ceo(selected_company, ceo_name, ceo_df, returns_df)
+        if fig:
+            st.pyplot(fig)
+    else:
+        st.info("CEO or company info missing.")

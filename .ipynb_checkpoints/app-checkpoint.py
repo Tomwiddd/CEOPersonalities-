@@ -9,6 +9,16 @@ import seaborn as sns
 st.set_page_config(layout="wide")
 st.title("Study of CEO Headshot Attributes and Firm Returns")
 
+# Custom CSS for white background
+st.markdown("""
+    <style>
+        .stApp {
+            background-color: black;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+
 # --- Load Returns Data ---
 @st.cache_data
 def load_returns_data():

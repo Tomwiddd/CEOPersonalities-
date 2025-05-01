@@ -4,6 +4,7 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotly.graph_objects as go
 
 # Set up the page selector
 page = st.sidebar.selectbox("Choose a page", ["Project Overview", "CEO Attributes", "Analysis"])
@@ -263,3 +264,64 @@ elif page == "Analysis":
     
     # Display in Streamlit
     st.dataframe(styled_corr, use_container_width=True)
+
+    st.subheader("📈 Interactive: Daily Cumulative Returns by CEO and Year")
+    
+    # Ensure required columns exist and clean
+    df = output_daily.copy()
+    df = df.dropna(subset=['CEO', 'Year', 'Year_Cum_Ret_Daily'])
+    
+    # Ensure 'Date' column is in datetime format
+    if 'Date' in df.columns:
+        df['Date'] = pd.to_datetime(df['Date'])
+    
+    # Create list of unique (CEO, Year) pairs
+    ceo_years = df[['CEO', 'Year']].drop_duplicates()
+    
+    # Build Plotly figure with dropdown
+    fig = go.Figure()
+    buttons = []
+    
+    for i, (ceo, year) in enumerate(ceo_years.values):
+        subset = df[(df['CEO'] == ceo) & (df['Year'] == year)]
+    
+        trace = go.Scatter(
+            x=subset['Date'],
+            y=subset['Year_Cum_Ret_Daily'],
+            mode='lines',
+            name=f'{ceo} ({year})',
+            visible=(i == 0)
+        )
+        fig.add_trace(trace)
+    
+        visibility = [False] * len(ceo_years)
+        visibility[i] = True
+    
+        buttons.append(dict(
+            label=f'{ceo} ({year})',
+            method='update',
+            args=[
+                {'visible': visibility},
+                {'title': f'Daily Cumulative Return: {ceo} ({year})'}
+            ]
+        ))
+    
+    fig.update_layout(
+        updatemenus=[{
+            'buttons': buttons,
+            'direction': 'down',
+            'showactive': True,
+            'x': 1.3,
+            'xanchor': 'left',
+            'y': 1.05,
+            'yanchor': 'top'
+        }],
+        title='Daily Cumulative Returns by CEO and Year',
+        xaxis_title='Date',
+        yaxis_title='Cumulative Return',
+        showlegend=False
+    )
+    
+    # Show in Streamlit
+    st.plotly_chart(fig, use_container_width=True)
+

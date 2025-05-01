@@ -181,6 +181,11 @@ elif page == "CEO Attributes":
 
 
 elif page == "Analysis":
+    output_file = "outputs/output_yearly_with_image_paths.csv"
+    output_yearly = pd.read_csv(output_file)
+    output_yearly.columns = output_yearly.columns.str.strip()
+
+    
     st.title("📈 CEO Attributes and Firm Returns: Analysis")
     
     st.subheader("CEO Race Representation (2010–2019)")

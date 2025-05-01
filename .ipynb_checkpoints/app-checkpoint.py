@@ -16,6 +16,8 @@ if page == "Project Overview":
     st.write("Additionally, we reviewed daily firm returns and yearly firm returns of each CEO during their tenure. This gave us a better understanding of how the company performed under the CEO and allowed us to evaluate patterns between firm performance and CEO attributes.")
     st.subheader("CEO Attribute Methodology")
     st.write("After using a scanner to collect images of each CEO for each year and verifying the CEO image from a verified image, we ran each image through the DeepFace package. This package collected the percentage of each attribute the image showed and projected the age of the CEO. Of course, this package is not perfect. As you look around the different years someone was CEO for, you'll likely see them be detected as nonlinear ages, various races, and of course, showing different dominant emotions. While not a perfect package, this gave us a strong starting point to understand how various attributes may correlate with firm returns.") 
+    st.subheader("Future Project Improvements")
+    st.write("As previously mentioned, the packages we used are not perfect. We used publicly available packages to scan for and analyze our images. This left us with blurry images, inconsistent attributes, and some missing information. In the future, these issues could be resolved through further data cleaning and a stronger attribute analyzer. But for now, as students, we used what was available to us and were still able to understand how various attributes correlate with firm returns. Enjoy exploring!") 
     
 
 elif page == "CEO Attributes":

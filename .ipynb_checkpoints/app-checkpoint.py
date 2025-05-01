@@ -227,3 +227,39 @@ elif page == "Analysis":
     
     # Display in Streamlit
     st.pyplot(fig_sex)
+
+    st.subheader("CEO Age Distribution (2010–2019)")
+
+    # Create the age distribution plot
+    fig_age, ax_age = plt.subplots(figsize=(10, 6))
+    sns.histplot(output_yearly['Age'], bins=20, kde=True, ax=ax_age)
+    ax_age.set_title('Age Distribution')
+    ax_age.set_xlabel('Age')
+    ax_age.set_ylabel('Count')
+    ax_age.grid(True)
+    plt.tight_layout()
+    
+    # Display in Streamlit
+    st.pyplot(fig_age)
+
+st.subheader("📌 Correlation Between CEO Attributes and Firm Returns")
+    
+    # Define relevant columns
+    image_attributes = [
+        'Age', 'Woman', 'Man', 'asian', 'indian', 'black', 'white',
+        'middle eastern', 'latino hispanic', 'angry', 'disgust', 'fear',
+        'happy', 'sad', 'surprise', 'neutral'
+    ]
+    return_measures = ['Year_Cum_Ret_Overall', 'Tenure_Cum_Ret_Overall']
+    
+    # Calculate correlation matrix
+    correlation_matrix = output_yearly[image_attributes + return_measures].corr()
+    
+    # Extract correlation values between attributes and return measures
+    correlation_table = correlation_matrix.loc[image_attributes, return_measures]
+    
+    # Apply formatting for visual clarity
+    styled_corr = correlation_table.style.background_gradient(cmap='coolwarm').format("{:.3f}")
+    
+    # Display in Streamlit
+    st.dataframe(styled_corr, use_container_width=True)

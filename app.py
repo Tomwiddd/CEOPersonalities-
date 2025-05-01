@@ -108,7 +108,7 @@ with col2:
                 st.info("Image not available for this CEO/year.")
             firm_return = selected_data.get('Tenure_Cum_Ret_Overall')
             if pd.notna(firm_return):
-                st.metric(label="Firm Return", value=f"{firm_return:.1f}")
+                st.metric(label="Firm Return", value=f"{firm_return:.2f}")
             else:
                 st.metric(label="Firm Return", value="N/A")
 

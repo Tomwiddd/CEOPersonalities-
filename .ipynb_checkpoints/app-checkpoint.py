@@ -94,49 +94,60 @@ else:
         st.text(f"Neutral: {selected_data.get('neutral', 0):.2f}")
 
 # --- Cumulative Returns Plot ---
+def plot_cumulative_returns_by_ceo(ticker, ceo_name, ceo_df, returns_df):
+    # Step 1: Find all years this CEO served at the selected company
+    tenure_years = ceo_df[
+        (ceo_df['Ticker'] == ticker) & 
+        (ceo_df['CEO'] == ceo_name)
+    ]['Date'].dropna().astype(int).tolist()
+
+    if not tenure_years:
+        st.warning("No years found for this CEO and company.")
+        return None
+
+    # Step 2: Create date ranges for each year
+    all_dates = []
+    for year in tenure_years:
+        year_dates = returns_df.index[
+            (returns_df.index.year == year)
+        ]
+        all_dates.extend(year_dates)
+
+    if not all_dates:
+        st.warning("No return data for selected CEO's tenure.")
+        return None
+
+    # Step 3: Filter return data
+    plot_df = returns_df.loc[sorted(set(all_dates))].copy()
+
+    if ticker not in plot_df.columns or 'SPY' not in plot_df.columns:
+        st.error(f"Return data not available for {ticker} or SPY.")
+        return None
+
+    # Step 4: Calculate cumulative returns
+    plot_df[f'Cum_Return_{ticker}'] = (1 + plot_df[ticker]).cumprod() - 1
+    plot_df['Cum_Return_SPY'] = (1 + plot_df['SPY']).cumprod() - 1
+
+    # Step 5: Plot
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.lineplot(data=plot_df, x=plot_df.index, y=f'Cum_Return_{ticker}', ax=ax, label=ticker)
+    sns.lineplot(data=plot_df, x=plot_df.index, y='Cum_Return_SPY', ax=ax, label='SPY')
+
+    plt.title(f"Cumulative Returns for {ceo_name} at {ticker}")
+    plt.xlabel("Date")
+    plt.ylabel("Cumulative Return (%)")
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.7)
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: '{:.0%}'.format(y)))
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    return fig
+
 if selected_data is not None:
-    st.subheader(f"Cumulative Returns During {selected_data.get('CEO', 'CEO')}'s Tenure")
-
-    def plot_cumulative_returns(ticker, start_date, returns_df):
-        plot_df = returns_df.copy()
-
-        try:
-            if start_date in plot_df.index:
-                plot_df = plot_df[plot_df.index >= start_date]
-            else:
-                plot_df = plot_df[plot_df.index >= plot_df.index[plot_df.index > start_date][0]]
-        except:
-            st.warning("Start date not found in index.")
-            return None
-
-        if ticker not in plot_df.columns or 'SPY' not in plot_df.columns:
-            st.error(f"Return data not available for {ticker} or SPY.")
-            return None
-
-        plot_df[f'Cum_Return_{ticker}'] = (1 + plot_df[ticker]).cumprod() - 1
-        plot_df['Cum_Return_SPY'] = (1 + plot_df['SPY']).cumprod() - 1
-
-        fig, ax = plt.subplots(figsize=(10, 6))
-        sns.lineplot(data=plot_df, x=plot_df.index, y=f'Cum_Return_{ticker}', ax=ax, label=ticker)
-        sns.lineplot(data=plot_df, x=plot_df.index, y='Cum_Return_SPY', ax=ax, label='SPY')
-
-        plt.title(f"Cumulative Returns: {ticker} vs SPY")
-        plt.xlabel("Date")
-        plt.ylabel("Cumulative Return (%)")
-        plt.legend()
-        plt.grid(True, linestyle='--', alpha=0.7)
-        ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: '{:.0%}'.format(y)))
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        return fig
-
-    tenure_start = selected_data.get('Tenure Start')
-    if pd.notna(tenure_start):
-        if selected_company in returns_df.columns and 'SPY' in returns_df.columns:
-            fig = plot_cumulative_returns(selected_company, tenure_start, returns_df)
-            if fig:
-                st.pyplot(fig)
-        else:
-            st.warning("Ticker or SPY not in return data.")
+    ceo_name = selected_data.get('CEO')
+    if ceo_name and selected_company:
+        fig = plot_cumulative_returns_by_ceo(selected_company, ceo_name, ceo_df, returns_df)
+        if fig:
+            st.pyplot(fig)
     else:
-        st.info("No start date available for this CEO.")
+        st.info("CEO or company info missing.")

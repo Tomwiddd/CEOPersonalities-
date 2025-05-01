@@ -11,7 +11,8 @@ import seaborn as sns
 page = st.sidebar.selectbox("Choose a page", ["Project Overview", "CEO Attributes", "Analysis"])
 
 if page == "Project Overview":
-    st.title("📊 CEO Attributes and Firm Returns: Project Overview")
+    st.title("📊 CEO Attributes and Firm Returns")
+    st.subheader("Project Overview")
     st.write("This project explores how a CEO's headshot may correlate to a firm's returns. We looked at publicly traded technology firms listed on the S&P 500 and their CEO's from 2010 - 2019. We analyzed pictures of the CEOs from each year for age, sex, race, dominant emotion, and overall emotion between happy, angry, disgust, fear, surprise, and neutral.")
     st.write("Additionally, we reviewed daily firm returns and yearly firm returns of each CEO during their tenure. This gave us a better understanding of how the company performed under the CEO and allowed us to evaluate patterns between firm performance and CEO attributes.")
     st.subheader("CEO Attribute Methodology")
@@ -21,7 +22,7 @@ if page == "Project Overview":
     
 
 elif page == "CEO Attributes":
-    st.title("🧠 CEO Attributes and Firm Returns: CEO Attributes")
+    st.title("🧠 CEO Attributes")
 
     # Load Returns Data
     @st.cache_data
@@ -195,7 +196,7 @@ elif page == "Analysis":
     output_yearly.columns = output_yearly.columns.str.strip()
 
     
-    st.title("📈 CEO Attributes and Firm Returns: Analysis")
+    st.title("📈 Attribute Analysis")
     
     st.subheader("CEO Race Representation (2010–2019)")
     

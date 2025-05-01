@@ -105,7 +105,7 @@ elif page == "CEO Attributes":
             "Neutral": f"{selected_data.get('neutral', 0):.2f}",
         }
         attr_df = pd.DataFrame(list(ceo_attributes.items()), columns=["Attribute", "Value"])
-        st.table(attr_df)
+        st.dataframe(attr_df, hide_index=True)
 
     # Load daily returns
     try:

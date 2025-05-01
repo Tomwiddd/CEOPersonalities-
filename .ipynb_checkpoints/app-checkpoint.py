@@ -100,16 +100,16 @@ try:
     r_df.columns = r_df.columns.str.strip()
     r_df['Ticker'] = r_df['Ticker'].str.strip().str.upper()
     r_df['Year'] = pd.to_numeric(r_df['Year'], errors='coerce').astype('Int64')
-    r_df['Date'] = pd.to_datetime(ceo_df['Date'], errors='coerce')
+    r_df['Date'] = pd.to_datetime(r_df['Date'], errors='coerce')
 except Exception as e:
     st.error(f"Failed to load daily CEO data: {e}")
     st.stop()
 
 def plot_cumulative_returns_by_ceo(ticker, ceo_name, r_df, returns_df):
-    # Step 1: Filter ceo_df to get all years this CEO was at the company
+    # Step 1: Filter r_df to get all years this CEO was at the company
     ceo_years = r_df[
-        (ceo_df['Ticker'] == ticker) & 
-        (ceo_df['CEO'] == ceo_name)
+        (r_df['Ticker'] == ticker) & 
+        (r_df['CEO'] == ceo_name)
     ]['Year'].dropna().astype(int).unique().tolist()
 
     if not ceo_years:
@@ -158,7 +158,7 @@ def plot_cumulative_returns_by_ceo(ticker, ceo_name, r_df, returns_df):
 if selected_data is not None:
     ceo_name = selected_data.get('CEO')
     if ceo_name and selected_company:
-        fig = plot_cumulative_returns_by_ceo(selected_company, ceo_name, ceo_df, returns_df)
+        fig = plot_cumulative_returns_by_ceo(selected_company, ceo_name, r_df, returns_df)
         if fig:
             st.pyplot(fig)
     else:

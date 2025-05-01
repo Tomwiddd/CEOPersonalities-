@@ -181,5 +181,25 @@ elif page == "CEO Attributes":
 
 
 elif page == "Analysis":
-    st.title("📈 CEO Attributes and Firm Returns:Analysis")
-    st.write("Visualize returns and evaluate CEO performance.")
+    st.title("📈 CEO Attributes and Firm Returns: Analysis")
+    
+    st.subheader("CEO Race Representation (2010–2019)")
+    
+    # Define race columns
+    race_cols = ['asian', 'indian', 'black', 'white', 'middle eastern', 'latino hispanic']
+    
+    # Melt the race data into long format
+    df_race = output_yearly[race_cols].melt(var_name='Race', value_name='Percentage')
+    
+    # Create the plot
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.barplot(data=df_race, x='Race', y='Percentage', estimator='mean', ci='sd', ax=ax)
+    ax.set_title('CEO Race Representation')
+    ax.set_ylabel('Mean Percentage (%)')
+    ax.set_xlabel('')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    
+    # Display in Streamlit
+    st.pyplot(fig)
+

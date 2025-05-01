@@ -20,7 +20,7 @@ elif page == "CEO Attributes":
     # Load Returns Data
     @st.cache_data
     def load_returns_data():
-        returns_file = "outputs/output_yearlywfilepath.csv"
+        returns_file = "outputs/output_yearly_with_image_paths.csv"
         if os.path.exists(returns_file):
             df = pd.read_csv(returns_file)
             df['Date'] = pd.to_datetime(df['Year'])

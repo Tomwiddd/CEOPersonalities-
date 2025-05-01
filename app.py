@@ -177,56 +177,52 @@ if selected_data is not None:
         st.info("No start date available for this CEO.")
 
 # me 
-
-import streamlit as st
-import pandas as pd
 import plotly.graph_objects as go
 
-# Load daily data
+# --- Load and prepare data ---
 df = pd.read_csv("outputs/output_daily.csv")
 df['Date'] = pd.to_datetime(df['Date'])
 
-# Combine CEO and Year into dropdown format
+# Create dropdown labels like "Steve Jobs (2010)"
 df['CEO_Year'] = df['CEO'] + " (" + df['Year'].astype(str) + ")"
-available_options = df['CEO_Year'].dropna().unique()
-selected_ceo_year = st.selectbox("Select a CEO-Year", sorted(available_options))
+options = sorted(df['CEO_Year'].dropna().unique())
 
-# Split CEO and Year
+st.title("CEO Cumulative Returns & Image Attributes")
+selected_ceo_year = st.selectbox("Select a CEO-Year", options)
+
+# --- Filter data based on selection ---
 selected_ceo, year_str = selected_ceo_year.rsplit(" (", 1)
-selected_year = int(year_str.strip(")"))
-
-# Filter DataFrame
+selected_year = int(year_str.rstrip(")"))
 ceo_df = df[(df['CEO'] == selected_ceo) & (df['Year'] == selected_year)].copy()
 ceo_df = ceo_df.sort_values('Date')
 
-# Check return column and plot
+# --- Plot cumulative return ---
 if 'Year_Cum_Ret_Daily' in ceo_df.columns:
     ceo_df['Cumulative_Return'] = ceo_df['Year_Cum_Ret_Daily']
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x=ceo_df['Date'],
+        y=ceo_df['Cumulative_Return'],
+        mode='lines',
+        name=f"{selected_ceo} ({selected_year})"
+    ))
+    fig.update_layout(
+        title=f"Cumulative Returns During {selected_ceo}'s Tenure",
+        xaxis_title="Date",
+        yaxis_title="Cumulative Return",
+        template="plotly_dark"
+    )
+    st.plotly_chart(fig, use_container_width=True)
 else:
-    st.error("Column 'Year_Cum_Ret_Daily' not found.")
-    st.stop()
+    st.warning("Cumulative return column not found in the data.")
 
-# Plot
-fig = go.Figure()
-fig.add_trace(go.Scatter(
-    x=ceo_df['Date'],
-    y=ceo_df['Cumulative_Return'],
-    mode='lines',
-    name=f'{selected_ceo} ({selected_year})'
-))
-fig.update_layout(
-    title=f"Daily Cumulative Returns: {selected_ceo} ({selected_year})",
-    xaxis_title="Date",
-    yaxis_title="Cumulative Return",
-    template="plotly_dark"
-)
-
-st.plotly_chart(fig, use_container_width=True)
-
-# Optional: Display image attribute table
+# --- Display image attributes ---
 st.markdown("### Image Attributes")
+
 image_cols = ['Age', 'dominant_gender', 'dominant_race', 'dominant_emotion', 
               'angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']
+
 if all(col in ceo_df.columns for col in image_cols):
     latest_row = ceo_df.iloc[-1]
     img_df = pd.DataFrame({
@@ -235,4 +231,4 @@ if all(col in ceo_df.columns for col in image_cols):
     })
     st.dataframe(img_df)
 else:
-    st.warning("Image attribute columns missing from the dataset.")
+    st.info("Image attributes not available for this CEO-year.")

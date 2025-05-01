@@ -132,54 +132,52 @@ elif page == "CEO Attributes":
         st.error("selected_company is not defined.")
         st.stop()
 
-    def plot_cumulative_returns_by_ceo(ticker, ceo_name, r_df):
-        r_df['Date'] = pd.to_datetime(r_df['Date'], errors='coerce')
+    def plot_cumulative_returns_by_ceo(ticker, ceo_name, r_df, year):
+    r_df['Date'] = pd.to_datetime(r_df['Date'], errors='coerce')
 
-        ceo_data = r_df[(r_df['Ticker'] == ticker) & (r_df['CEO'] == ceo_name)].copy()
+    ceo_data = r_df[(r_df['Ticker'] == ticker) & (r_df['CEO'] == ceo_name)]
+    if ceo_data.empty:
+        st.warning("No data available for the selected CEO and company.")
+        return None
 
-        if ceo_data.empty:
-            st.warning("No data available for the selected CEO and company.")
-            return None
+    # Filter data to the selected year
+    start_date = pd.to_datetime(f"{year}-01-01")
+    end_date = pd.to_datetime(f"{year}-12-31")
+    r_df = r_df[(r_df['Date'] >= start_date) & (r_df['Date'] <= end_date)].copy()
+    r_df = r_df.set_index('Date')
 
-        mask_dates = (r_df['Date'] >= '2010-01-01') & (r_df['Date'] <= '2019-12-31')
-        r_df = r_df[mask_dates]
-        r_df = r_df.set_index('Date')
+    firm_df = r_df[(r_df['Ticker'] == ticker) & (r_df['CEO'] == ceo_name)].copy()
+    spy_df = r_df[(r_df['Ticker'] == 'SPY') & (r_df.index.isin(firm_df.index))].copy()
 
-        firm_df = r_df[(r_df['Ticker'] == ticker) & (r_df['CEO'] == ceo_name)].copy()
-        spy_df = r_df[(r_df['Ticker'] == 'SPY') & (r_df.index.isin(firm_df.index))].copy()
+    if firm_df.empty:
+        st.warning("Company return data not available for the selected CEO and year.")
+        return None
 
-        if firm_df.empty:
-            st.warning("Company return data not available for CEO's tenure.")
-            return None
+    firm_df = firm_df.sort_index()
+    firm_df['Return'] = firm_df['Return'].astype(float)
+    cum_firm = (1 + firm_df['Return']).cumprod() - 1
 
-        firm_df = firm_df.sort_index()
-        firm_df['Return'] = firm_df['Return'].astype(float)
-        cum_firm = (1 + firm_df['Return']).cumprod() - 1
+    plot_spy = not spy_df.empty
+    if plot_spy:
+        spy_df = spy_df.sort_index()
+        spy_df['Return'] = spy_df['Return'].astype(float)
+        cum_spy = (1 + spy_df['Return']).cumprod() - 1
 
-        plot_spy = not spy_df.empty
-        if plot_spy:
-            spy_df = spy_df.sort_index()
-            spy_df['Return'] = spy_df['Return'].astype(float)
-            cum_spy = (1 + spy_df['Return']).cumprod() - 1
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.lineplot(x=cum_firm.index, y=cum_firm, ax=ax, label=ticker)
+    if plot_spy:
+        sns.lineplot(x=cum_spy.index, y=cum_spy, ax=ax, label='SPY')
 
-        fig, ax = plt.subplots(figsize=(10, 6))
-        sns.lineplot(x=cum_firm.index, y=cum_firm, ax=ax, label=ticker)
-        if plot_spy:
-            sns.lineplot(x=cum_spy.index, y=cum_spy, ax=ax, label='SPY')
+    plt.title(f"Daily Cumulative Returns for {ceo_name} at {ticker} in {year}")
+    plt.xlabel("Date")
+    plt.ylabel("Cumulative Return")
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.7)
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: '{:.0%}'.format(y)))
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    return fig
 
-        plt.title(f"Daily Returns for {ceo_name} at {ticker}")
-        plt.xlabel("Date")
-        plt.ylabel("Daily Return")
-        plt.legend()
-        plt.grid(True, linestyle='--', alpha=0.7)
-        ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: '{:.0%}'.format(y)))
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        return fig
-
-    fig = plot_cumulative_returns_by_ceo(selected_company, ceo_name, r_df)
-    if fig:
-        st.pyplot(fig)
 
 
 elif page == "Analysis":

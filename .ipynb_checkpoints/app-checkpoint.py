@@ -177,8 +177,8 @@ elif page == "CEO Attributes":
     plt.tight_layout()
     return fig
 fig = plot_cumulative_returns_by_ceo(selected_company, ceo_name, r_df, selected_year)
-    if fig:
-        st.pyplot(fig)
+ if fig:
+    st.pyplot(fig)
     
 
 

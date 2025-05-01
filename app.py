@@ -15,7 +15,7 @@ if page == "Project Overview":
     
 
 elif page == "CEO Attributes":
-    st.title("🧠 CEO Attributes")
+    st.title("🧠 CEO Attributes and Firm Returns: CEO Attributes")
 
     # Load Returns Data
     @st.cache_data
@@ -179,5 +179,5 @@ elif page == "CEO Attributes":
         st.pyplot(fig)
 
 elif page == "Analysis":
-    st.title("📈 Analysis")
+    st.title("📈 CEO Attributes and Firm Returns: Analysis")
     st.write("Visualize returns and evaluate CEO performance.")

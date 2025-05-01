@@ -5,6 +5,23 @@ import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import streamlit as st
+
+page = st.sidebar.selectbox("Choose a page", ["Project Overview", "CEO Attributes", "Analysis"])
+
+if page == "Project Overview":
+    st.title("📊 Project Overview")
+    st.write("Welcome to the CEO Analysis Dashboard.")
+
+elif page == "CEO Attributes":
+    st.title("🧠 CEO Attributes")
+    st.write("This section explores CEO traits, clusters, etc.")
+
+elif page == "Analysis":
+    st.title("📈 Analysis")
+    st.write("Visualize returns and evaluate CEO performance.")
+
+
 # --- Page Config ---
 st.set_page_config(layout="wide")
 st.title("Study of CEO Headshot Attributes and Firm Returns")

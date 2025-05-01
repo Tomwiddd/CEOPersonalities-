@@ -134,20 +134,21 @@ elif page == "CEO Attributes":
 
     def plot_cumulative_returns_by_ceo(ticker, ceo_name, r_df, year):
     r_df['Date'] = pd.to_datetime(r_df['Date'], errors='coerce')
+    r_df = r_df[r_df['Ticker'].notnull() & r_df['CEO'].notnull()]
 
-    ceo_data = r_df[(r_df['Ticker'] == ticker) & (r_df['CEO'] == ceo_name)]
-    if ceo_data.empty:
-        st.warning("No data available for the selected CEO and company.")
-        return None
-
-    # Filter data to the selected year
+    # Filter by year
     start_date = pd.to_datetime(f"{year}-01-01")
     end_date = pd.to_datetime(f"{year}-12-31")
-    r_df = r_df[(r_df['Date'] >= start_date) & (r_df['Date'] <= end_date)].copy()
-    r_df = r_df.set_index('Date')
+    year_df = r_df[(r_df['Date'] >= start_date) & (r_df['Date'] <= end_date)].copy()
 
-    firm_df = r_df[(r_df['Ticker'] == ticker) & (r_df['CEO'] == ceo_name)].copy()
-    spy_df = r_df[(r_df['Ticker'] == 'SPY') & (r_df.index.isin(firm_df.index))].copy()
+    if year_df.empty:
+        st.warning("No return data available for the selected year.")
+        return None
+
+    year_df.set_index('Date', inplace=True)
+
+    firm_df = year_df[(year_df['Ticker'] == ticker) & (year_df['CEO'] == ceo_name)].copy()
+    spy_df = year_df[(year_df['Ticker'] == 'SPY') & (year_df.index.isin(firm_df.index))].copy()
 
     if firm_df.empty:
         st.warning("Company return data not available for the selected CEO and year.")
@@ -157,18 +158,16 @@ elif page == "CEO Attributes":
     firm_df['Return'] = firm_df['Return'].astype(float)
     cum_firm = (1 + firm_df['Return']).cumprod() - 1
 
-    plot_spy = not spy_df.empty
-    if plot_spy:
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.lineplot(x=cum_firm.index, y=cum_firm, ax=ax, label=ticker)
+
+    if not spy_df.empty:
         spy_df = spy_df.sort_index()
         spy_df['Return'] = spy_df['Return'].astype(float)
         cum_spy = (1 + spy_df['Return']).cumprod() - 1
-
-    fig, ax = plt.subplots(figsize=(10, 6))
-    sns.lineplot(x=cum_firm.index, y=cum_firm, ax=ax, label=ticker)
-    if plot_spy:
         sns.lineplot(x=cum_spy.index, y=cum_spy, ax=ax, label='SPY')
 
-    plt.title(f"Daily Cumulative Returns for {ceo_name} at {ticker} in {year}")
+    plt.title(f"Cumulative Daily Returns for {ceo_name} at {ticker} in {year}")
     plt.xlabel("Date")
     plt.ylabel("Cumulative Return")
     plt.legend()
@@ -177,6 +176,10 @@ elif page == "CEO Attributes":
     plt.xticks(rotation=45)
     plt.tight_layout()
     return fig
+    fig = plot_cumulative_returns_by_ceo(selected_company, ceo_name, r_df, selected_year)
+    if fig:
+        st.pyplot(fig)
+
 
 
 

@@ -4,6 +4,8 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 # Set up the page selector
 page = st.sidebar.selectbox("Choose a page", ["Project Overview", "CEO Attributes", "Analysis"])
@@ -263,3 +265,54 @@ elif page == "Analysis":
     
     # Display in Streamlit
     st.dataframe(styled_corr, use_container_width=True)
+
+    # Load your data (you might need to use st.cache or st.file_uploader in real apps)
+    df = output_daily.copy()
+    
+    # Ensure 'Date' column is datetime
+    if 'Date' in df.columns:
+        df['Date'] = pd.to_datetime(df['Date'])
+    
+    # Drop rows with missing required values
+    df = df.dropna(subset=['CEO', 'Year', 'Year_Cum_Ret_Daily'])
+    
+    # Set attributes
+    image_attributes = ['Age', 'Woman', 'Man', 'asian', 'indian', 'black', 'white', 
+                        'middle eastern', 'latino hispanic', 'angry', 'disgust', 
+                        'fear', 'happy', 'sad', 'surprise', 'neutral']
+    
+    # Create CEO-Year selector
+    df['CEO_Year'] = df['CEO'] + " (" + df['Year'].astype(str) + ")"
+    selected = st.selectbox("Select CEO-Year", df['CEO_Year'].unique())
+    
+    # Filter based on selection
+    selected_ceo, selected_year = selected.rsplit(" (", 1)
+    selected_year = int(selected_year.rstrip(")"))
+    subset = df[(df['CEO'] == selected_ceo) & (df['Year'] == selected_year)]
+    
+    # Plot line chart
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x=subset['Date'],
+        y=subset['Year_Cum_Ret_Daily'],
+        mode='lines',
+        name=f'{selected_ceo} ({selected_year})'
+    ))
+    
+    fig.update_layout(
+        title=f'Daily Cumulative Return: {selected_ceo} ({selected_year})',
+        xaxis_title='Date',
+        yaxis_title='Year_Cum_Ret_Daily',
+        height=500
+    )
+    
+    st.plotly_chart(fig)
+    
+    # Show attribute table
+    st.subheader("CEO Image Attributes")
+    ceo_row = subset.iloc[0]
+    attr_df = pd.DataFrame({
+        "Attribute": image_attributes,
+        "Value": [round(ceo_row[attr], 3) if pd.notnull(ceo_row[attr]) else 'N/A' for attr in image_attributes]
+    })
+    st.table(attr_df)

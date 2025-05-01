@@ -48,17 +48,14 @@ elif page == "CEO Attributes":
         st.error(f"Failed to load CEO data: {e}")
         st.stop()
 
-    # Full-width CEO and Company Info
-    st.subheader("View attributes by Company")
-
     # Dropdowns for company and year selection
+    st.subheader("View attributes by Company")
     all_tickers = sorted(ceo_df['Ticker'].unique())
     selected_company = st.selectbox("Please select company", all_tickers)
-
     allowed_years = list(range(2010, 2020))
     selected_year = st.selectbox("Please select year", allowed_years)
 
-    # Filter data based on selection
+    # Filter data
     filtered_data = ceo_df[
         (ceo_df['Ticker'] == selected_company) &
         (ceo_df['Year'] == selected_year)
@@ -70,7 +67,8 @@ elif page == "CEO Attributes":
     else:
         selected_data = filtered_data.iloc[0]
 
-        info_col, img_col = st.columns([1, 1])
+        # Layout: image | key info
+        img_col, info_col = st.columns([1, 2])
 
         with img_col:
             image_path = selected_data.get('Image Path')
@@ -79,33 +77,37 @@ elif page == "CEO Attributes":
             else:
                 st.info("Image not available for this CEO/year.")
 
+        with info_col:
+            st.markdown(f"**Company:** {selected_data.get('Ticker', 'N/A')}")
+            st.markdown(f"**Year:** {selected_data.get('Year', 'N/A')}")
+            st.markdown(f"**CEO:** {selected_data.get('CEO', 'N/A')}")
             firm_return = selected_data.get('Tenure_Cum_Ret_Overall')
             if pd.notna(firm_return):
-                st.metric(label="Firm Return", value=f"{firm_return:.1f}")
+                st.metric(label="Firm Return", value=f"{firm_return:.1f}%")
             else:
                 st.metric(label="Firm Return", value="N/A")
-            with info_col:
-                ceo_attributes = {
-                    "Company": selected_data.get('Ticker', 'N/A'),
-                    "Year": selected_data.get('Year', 'N/A'),
-                    "CEO": selected_data.get('CEO', 'N/A'),
-                    "Sex": selected_data.get('dominant_gender', 'N/A'),
-                    "Race (Inferred)": selected_data.get('dominant_race', 'N/A'),
-                    "Age": selected_data.get('age', 'N/A'),
-                    "Dominant Emotion": selected_data.get('dominant_emotion', 'N/A'),
-                    "Angry": f"{selected_data.get('angry', 0):.2f}",
-                    "Disgust": f"{selected_data.get('disgust', 0):.2f}",
-                    "Fear": f"{selected_data.get('fear', 0):.2f}",
-                    "Happy": f"{selected_data.get('happy', 0):.2f}",
-                    "Sad": f"{selected_data.get('sad', 0):.2f}",
-                    "Surprise": f"{selected_data.get('surprise', 0):.2f}",
-                    "Neutral": f"{selected_data.get('neutral', 0):.2f}",
-                }
-    attr_df = pd.DataFrame(list(ceo_attributes.items()))
-    st.table(attr_df)
 
+        # Attribute table below
+        st.markdown("---")
+        st.subheader("CEO Attribute Details")
 
-    # --- Cumulative Returns Plot ---
+        ceo_attributes = {
+            "Sex": selected_data.get('dominant_gender', 'N/A'),
+            "Race (Inferred)": selected_data.get('dominant_race', 'N/A'),
+            "Age": selected_data.get('age', 'N/A'),
+            "Dominant Emotion": selected_data.get('dominant_emotion', 'N/A'),
+            "Angry": f"{selected_data.get('angry', 0):.2f}",
+            "Disgust": f"{selected_data.get('disgust', 0):.2f}",
+            "Fear": f"{selected_data.get('fear', 0):.2f}",
+            "Happy": f"{selected_data.get('happy', 0):.2f}",
+            "Sad": f"{selected_data.get('sad', 0):.2f}",
+            "Surprise": f"{selected_data.get('surprise', 0):.2f}",
+            "Neutral": f"{selected_data.get('neutral', 0):.2f}",
+        }
+        attr_df = pd.DataFrame(list(ceo_attributes.items()), columns=["Attribute", "Value"])
+        st.table(attr_df)
+
+    # Load daily returns
     try:
         returns_file = "outputs/output_daily.csv"
         r_df = pd.read_csv(returns_file)
@@ -117,7 +119,7 @@ elif page == "CEO Attributes":
         st.error(f"Failed to load daily returns data: {e}")
         st.stop()
 
-    # Ensure required inputs are defined
+    # Plot cumulative returns
     if 'selected_data' in locals() and selected_data is not None:
         ceo_name = selected_data.get('CEO')
     else:
@@ -128,7 +130,6 @@ elif page == "CEO Attributes":
         st.error("selected_company is not defined.")
         st.stop()
 
-    # --- Function: Plot cumulative returns during CEO's tenure ---
     def plot_cumulative_returns_by_ceo(ticker, ceo_name, r_df):
         r_df['Date'] = pd.to_datetime(r_df['Date'], errors='coerce')
 
@@ -140,11 +141,9 @@ elif page == "CEO Attributes":
 
         mask_dates = (r_df['Date'] >= '2010-01-01') & (r_df['Date'] <= '2019-12-31')
         r_df = r_df[mask_dates]
-
         r_df = r_df.set_index('Date')
 
         firm_df = r_df[(r_df['Ticker'] == ticker) & (r_df['CEO'] == ceo_name)].copy()
-
         spy_df = r_df[(r_df['Ticker'] == 'SPY') & (r_df.index.isin(firm_df.index))].copy()
 
         if firm_df.empty:
@@ -163,11 +162,10 @@ elif page == "CEO Attributes":
 
         fig, ax = plt.subplots(figsize=(10, 6))
         sns.lineplot(x=cum_firm.index, y=cum_firm, ax=ax, label=ticker)
-
         if plot_spy:
             sns.lineplot(x=cum_spy.index, y=cum_spy, ax=ax, label='SPY')
 
-        plt.title(f"Cumulative Returns for {ceo_name} at {ticker}")
+        plt.title(f"Daily Returns for {ceo_name} at {ticker}")
         plt.xlabel("Date")
         plt.ylabel("Daily Return")
         plt.legend()
@@ -177,10 +175,10 @@ elif page == "CEO Attributes":
         plt.tight_layout()
         return fig
 
-    # Safely run the plot
     fig = plot_cumulative_returns_by_ceo(selected_company, ceo_name, r_df)
     if fig:
         st.pyplot(fig)
+
 
 elif page == "Analysis":
     st.title("📈 CEO Attributes and Firm Returns:Analysis")

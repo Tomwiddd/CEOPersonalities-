@@ -178,6 +178,8 @@ if selected_data is not None:
 
 # me 
 
+import streamlit as st
+import pandas as pd
 import plotly.graph_objects as go
 import os
 
@@ -241,7 +243,5 @@ if all(col in ceo_df.columns for col in image_cols):
         "Value": [latest_row[col] for col in image_cols]
     })
     st.dataframe(attr_df)
-else:
-    st.info("Image attributes not available for this CEO-year.")
 else:
     st.info("Image attributes not available for this CEO-year.")

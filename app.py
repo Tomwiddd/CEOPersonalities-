@@ -12,7 +12,7 @@ st.title("Study of CEO Headshot Attributes and Firm Returns")
 # --- Load Returns Data ---
 @st.cache_data
 def load_returns_data():
-    returns_file = "outputs/output_yearly_with_image_paths.csv"
+    returns_file = "outputs/output_yearlywfilepath.csv"
     if os.path.exists(returns_file):
         df = pd.read_csv(returns_file)
         df['Date'] = pd.to_datetime(df['Year'])
@@ -30,7 +30,7 @@ except Exception as e:
 
 # --- Load CEO Data ---
 try:
-    ceo_file = "outputs/output_yearly_with_image_paths.csv"
+    ceo_file = "outputs/output_yearlywfilepath.csv"
     ceo_df = pd.read_csv(ceo_file)
     ceo_df.columns = ceo_df.columns.str.strip()
     ceo_df['Ticker'] = ceo_df['Ticker'].str.strip().str.upper()  # Ensure consistent formatting
@@ -40,40 +40,6 @@ except Exception as e:
     st.error(f"Failed to load CEO data: {e}")
     st.stop()
 
-# --- Correlation Data ---
-correlation_data = {
-    'Attribute': [
-        'LM Positive', 'LM Negative', 'ML Positive', 'ML Negative',
-        'Risk Positive', 'Risk Negative', 'High Level Positive',
-        'High Level Negative', 'Finance Positive', 'Finance Negative'
-    ],
-    'Correlation (ret_0)': [
-        -0.089, -0.014, 0.024, 0.038, -0.013,
-        -0.010, -0.093, -0.020, 0.035, 0.070
-    ]
-}
-correlation_df = pd.DataFrame(correlation_data).set_index('Attribute')
-
-def color_correlation(val):
-    if val > 0.05:
-        return 'color: red'
-    elif val > 0.02:
-        return 'color: lightcoral'
-    elif val < -0.05:
-        return 'color: blue'
-    elif val < -0.01:
-        return 'color: lightblue'
-    else:
-        return 'color: black'
-
-# --- Layout Start ---
-col1, col2 = st.columns([1, 2])
-
-# --- Column 1: Correlation Table ---
-with col1:
-    st.subheader("Correlation between image attributes and firm return")
-    styled_corr = correlation_df.style.applymap(color_correlation).format("{:.3f}")
-    st.dataframe(styled_corr)
 
 # --- Column 2: Company & Year Select + CEO Info ---
 with col2:
@@ -108,7 +74,7 @@ with col2:
                 st.info("Image not available for this CEO/year.")
             firm_return = selected_data.get('Tenure_Cum_Ret_Overall')
             if pd.notna(firm_return):
-                st.metric(label="Firm Return", value=f"{firm_return:.2f}")
+                st.metric(label="Firm Return", value=f"{firm_return:.1f}")
             else:
                 st.metric(label="Firm Return", value="N/A")
 
@@ -175,7 +141,3 @@ if selected_data is not None:
             st.warning("Ticker or SPY not in return data.")
     else:
         st.info("No start date available for this CEO.")
-
-    st.dataframe(attr_df)
-else:
-    st.info("Image attributes not available for this CEO-year.")

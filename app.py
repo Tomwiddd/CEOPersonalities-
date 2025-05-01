@@ -9,6 +9,16 @@ import seaborn as sns
 st.set_page_config(layout="wide")
 st.title("Study of CEO Headshot Attributes and Firm Returns")
 
+# Custom CSS for white background
+st.markdown("""
+    <style>
+        .stApp {
+            background-color: white;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+
 # --- Load Returns Data ---
 @st.cache_data
 def load_returns_data():
@@ -166,7 +176,7 @@ def plot_cumulative_returns_by_ceo(ticker, ceo_name, r_df):
 
     plt.title(f"Cumulative Returns for {ceo_name} at {ticker}")
     plt.xlabel("Date")
-    plt.ylabel("Cumulative Return")
+    plt.ylabel("Daily Return")
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.7)
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: '{:.0%}'.format(y)))

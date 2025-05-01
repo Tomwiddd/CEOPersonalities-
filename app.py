@@ -193,7 +193,7 @@ if not os.path.exists(file_path):
 df = pd.read_csv(file_path)
 df['Date'] = pd.to_datetime(df['Date'])
 
-# --- Set up CEO-Year dropdown ---
+# --- Create CEO-Year dropdown labels ---
 df['CEO_Year'] = df['CEO'] + " (" + df['Year'].astype(str) + ")"
 options = sorted(df['CEO_Year'].dropna().unique())
 
@@ -219,7 +219,7 @@ if 'Year_Cum_Ret_Daily' in ceo_df.columns:
         name=f"{selected_ceo} ({selected_year})"
     ))
     fig.update_layout(
-        title=f"Cumulative Returns During {selected_ceo}'s Tenure",
+        title=f"Cumulative Returns During {selected_ceo} ({selected_year})",
         xaxis_title="Date",
         yaxis_title="Cumulative Return",
         template="plotly_dark"

@@ -83,7 +83,7 @@ elif page == "CEO Attributes":
             st.markdown(f"**Company:** {selected_data.get('Ticker', 'N/A')}")
             st.markdown(f"**Year:** {selected_data.get('Year', 'N/A')}")
             st.markdown(f"**CEO:** {selected_data.get('CEO', 'N/A')}")
-            firm_return = selected_data.get('Tenure_Cum_Ret_Overall')
+            firm_return = selected_data.get('Year_Cum_Ret_Overall')
             if pd.notna(firm_return):
                 st.metric(label="Firm Return", value=f"{firm_return:.1f}%")
             else:

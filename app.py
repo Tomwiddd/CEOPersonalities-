@@ -94,9 +94,20 @@ else:
         st.text(f"Neutral: {selected_data.get('neutral', 0):.2f}")
 
 # --- Cumulative Returns Plot ---
-def plot_cumulative_returns_by_ceo(ticker, ceo_name, ceo_df, returns_df):
+try:
+    returns_file = "outputs/output_daily.csv"
+    r_df = pd.read_csv(returns_file)
+    r_df.columns = r_df.columns.str.strip()
+    r_df['Ticker'] = r_df['Ticker'].str.strip().str.upper()
+    r_df['Year'] = pd.to_numeric(r_df['Year'], errors='coerce').astype('Int64')
+    r_df['Date'] = pd.to_datetime(ceo_df['Date'], errors='coerce')
+except Exception as e:
+    st.error(f"Failed to load daily CEO data: {e}")
+    st.stop()
+
+def plot_cumulative_returns_by_ceo(ticker, ceo_name, r_df, returns_df):
     # Step 1: Filter ceo_df to get all years this CEO was at the company
-    ceo_years = ceo_df[
+    ceo_years = r_df[
         (ceo_df['Ticker'] == ticker) & 
         (ceo_df['CEO'] == ceo_name)
     ]['Year'].dropna().astype(int).unique().tolist()
@@ -137,7 +148,7 @@ def plot_cumulative_returns_by_ceo(ticker, ceo_name, ceo_df, returns_df):
 
     plt.title(f"Cumulative Returns for {ceo_name} at {ticker}")
     plt.xlabel("Date")
-    plt.ylabel("Cumulative Return (%)")
+    plt.ylabel("Return")
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.7)
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: '{:.0%}'.format(y)))

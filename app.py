@@ -143,7 +143,7 @@ elif page == "CEO Attributes":
     
         if year_df.empty:
             st.warning("No return data available for the selected year.")
-            return None
+        return None
     
         year_df.set_index('Date', inplace=True)
     
@@ -152,7 +152,7 @@ elif page == "CEO Attributes":
     
         if firm_df.empty:
             st.warning("Company return data not available for the selected CEO and year.")
-            return None
+        return None
     
         firm_df = firm_df.sort_index()
         firm_df['Return'] = firm_df['Return'].astype(float)

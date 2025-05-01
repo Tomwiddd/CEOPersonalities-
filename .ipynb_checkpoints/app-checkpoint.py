@@ -119,39 +119,50 @@ if 'selected_company' not in locals():
 
 # --- Function: Plot cumulative returns during CEO's tenure ---
 def plot_cumulative_returns_by_ceo(ticker, ceo_name, r_df):
-    # Ensure Date column is datetime
+    # Ensure 'Date' column is datetime
     r_df['Date'] = pd.to_datetime(r_df['Date'], errors='coerce')
 
-    # Filter rows where this CEO was in charge at the given company
-    firm_df = r_df[(r_df['Ticker'] == ticker) & (r_df['CEO'] == ceo_name)].copy()
+    # Filter rows for the selected CEO and ticker
+    ceo_data = r_df[(r_df['Ticker'] == ticker) & (r_df['CEO'] == ceo_name)].copy()
 
-    if firm_df.empty:
-        st.warning(f"No daily returns found for {ceo_name} at {ticker}.")
+    if ceo_data.empty:
+        st.warning("No data available for the selected CEO and company.")
         return None
 
-    # Get matching SPY data for the same dates
-    spy_df = r_df[(r_df['Ticker'] == 'SPY') & (r_df['Date'].isin(firm_df['Date']))].copy()
+    # Filter for CEO's tenure dates (2010-01-01 to 2019-12-31)
+    mask_dates = (r_df['Date'] >= '2010-01-01') & (r_df['Date'] <= '2019-12-31')
+    r_df = r_df[mask_dates]
 
-    if spy_df.empty:
-        st.warning("SPY data not available for matching dates.")
+    # Set date as index for time series operations
+    r_df = r_df.set_index('Date')
+
+    # Get firm data during this period
+    firm_df = r_df[(r_df['Ticker'] == ticker) & (r_df['CEO'] == ceo_name)].copy()
+
+    # Get SPY data for same date range
+    spy_df = r_df[(r_df['Ticker'] == 'SPY') & (r_df.index.isin(firm_df.index))].copy()
+
+    if firm_df.empty:
+        st.warning("Company return data not available for CEO's tenure.")
         return None
 
     # Sort by date
-    firm_df = firm_df.sort_values('Date')
-    spy_df = spy_df.sort_values('Date')
-
-    # Convert returns to float
+    firm_df = firm_df.sort_index()
     firm_df['Return'] = firm_df['Return'].astype(float)
-    spy_df['Return'] = spy_df['Return'].astype(float)
-
-    # Calculate cumulative returns
     cum_firm = (1 + firm_df['Return']).cumprod() - 1
-    cum_spy = (1 + spy_df['Return']).cumprod() - 1
+
+    plot_spy = not spy_df.empty
+    if plot_spy:
+        spy_df = spy_df.sort_index()
+        spy_df['Return'] = spy_df['Return'].astype(float)
+        cum_spy = (1 + spy_df['Return']).cumprod() - 1
 
     # Plotting
     fig, ax = plt.subplots(figsize=(10, 6))
-    sns.lineplot(x=firm_df['Date'], y=cum_firm, ax=ax, label=ticker)
-    sns.lineplot(x=spy_df['Date'], y=cum_spy, ax=ax, label='SPY')
+    sns.lineplot(x=cum_firm.index, y=cum_firm, ax=ax, label=ticker)
+
+    if plot_spy:
+        sns.lineplot(x=cum_spy.index, y=cum_spy, ax=ax, label='SPY')
 
     plt.title(f"Cumulative Returns for {ceo_name} at {ticker}")
     plt.xlabel("Date")
@@ -162,6 +173,7 @@ def plot_cumulative_returns_by_ceo(ticker, ceo_name, r_df):
     plt.xticks(rotation=45)
     plt.tight_layout()
     return fig
+
 
 
 # --- Safely run the plot ---

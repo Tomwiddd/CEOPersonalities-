@@ -177,22 +177,31 @@ if selected_data is not None:
         st.info("No start date available for this CEO.")
 
 # me 
-import plotly.graph_objects as go
 
-# --- Load and prepare data ---
-df = pd.read_csv("outputs/output_daily.csv")
+import plotly.graph_objects as go
+import os
+
+# --- Load CSV safely ---
+file_path = os.path.join("outputs", "output_daily.csv")
+
+if not os.path.exists(file_path):
+    st.error(f"File not found: {file_path}")
+    st.stop()
+
+df = pd.read_csv(file_path)
 df['Date'] = pd.to_datetime(df['Date'])
 
-# Create dropdown labels like "Steve Jobs (2010)"
+# --- Set up CEO-Year dropdown ---
 df['CEO_Year'] = df['CEO'] + " (" + df['Year'].astype(str) + ")"
 options = sorted(df['CEO_Year'].dropna().unique())
 
 st.title("CEO Cumulative Returns & Image Attributes")
 selected_ceo_year = st.selectbox("Select a CEO-Year", options)
 
-# --- Filter data based on selection ---
+# --- Filter data ---
 selected_ceo, year_str = selected_ceo_year.rsplit(" (", 1)
 selected_year = int(year_str.rstrip(")"))
+
 ceo_df = df[(df['CEO'] == selected_ceo) & (df['Year'] == selected_year)].copy()
 ceo_df = ceo_df.sort_values('Date')
 
@@ -215,20 +224,24 @@ if 'Year_Cum_Ret_Daily' in ceo_df.columns:
     )
     st.plotly_chart(fig, use_container_width=True)
 else:
-    st.warning("Cumulative return column not found in the data.")
+    st.warning("Column 'Year_Cum_Ret_Daily' not found in data.")
 
-# --- Display image attributes ---
+# --- Show image attributes ---
 st.markdown("### Image Attributes")
 
-image_cols = ['Age', 'dominant_gender', 'dominant_race', 'dominant_emotion', 
-              'angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']
+image_cols = [
+    'Age', 'dominant_gender', 'dominant_race', 'dominant_emotion',
+    'angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral'
+]
 
 if all(col in ceo_df.columns for col in image_cols):
     latest_row = ceo_df.iloc[-1]
-    img_df = pd.DataFrame({
-        'Attribute': image_cols,
-        'Value': [latest_row[col] for col in image_cols]
+    attr_df = pd.DataFrame({
+        "Attribute": image_cols,
+        "Value": [latest_row[col] for col in image_cols]
     })
-    st.dataframe(img_df)
+    st.dataframe(attr_df)
+else:
+    st.info("Image attributes not available for this CEO-year.")
 else:
     st.info("Image attributes not available for this CEO-year.")

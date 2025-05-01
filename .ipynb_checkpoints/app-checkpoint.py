@@ -13,7 +13,7 @@ st.title("Study of CEO Headshot Attributes and Firm Returns")
 st.markdown("""
     <style>
         .stApp {
-            background-color: blue;
+            background-color: navy;
         }
     </style>
 """, unsafe_allow_html=True)

@@ -33,66 +33,65 @@ try:
     ceo_file = "outputs/output_yearlywfilepath.csv"
     ceo_df = pd.read_csv(ceo_file)
     ceo_df.columns = ceo_df.columns.str.strip()
-    ceo_df['Ticker'] = ceo_df['Ticker'].str.strip().str.upper()  # Ensure consistent formatting
+    ceo_df['Ticker'] = ceo_df['Ticker'].str.strip().str.upper()
     ceo_df['Year'] = pd.to_numeric(ceo_df['Year'], errors='coerce').astype('Int64')
     ceo_df = ceo_df[(ceo_df['Year'] >= 2010) & (ceo_df['Year'] <= 2019)]
 except Exception as e:
     st.error(f"Failed to load CEO data: {e}")
     st.stop()
 
+# --- Full-width CEO and Company Info ---
+st.subheader("View attributes by Company")
 
-# --- Column 2: Company & Year Select + CEO Info ---
-with col2:
-    st.subheader("View attributes by Company")
+# Dropdowns
+all_tickers = sorted(ceo_df['Ticker'].unique())
+selected_company = st.selectbox("Please select company", all_tickers)
 
-    # Dropdown for selecting company (all tickers)
-    all_tickers = sorted(ceo_df['Ticker'].unique())  # Keep all tickers (unique only for dropdown)
-    selected_company = st.selectbox("Please select company", all_tickers)
+allowed_years = list(range(2010, 2020))
+selected_year = st.selectbox("Please select year", allowed_years)
 
-    allowed_years = list(range(2010, 2020))
-    selected_year = st.selectbox("Please select year", allowed_years)
+# Filter data based on selection
+filtered_data = ceo_df[
+    (ceo_df['Ticker'] == selected_company) &
+    (ceo_df['Year'] == selected_year)
+]
 
-    # Filter data based on selected company and year
-    filtered_data = ceo_df[
-        (ceo_df['Ticker'] == selected_company) &
-        (ceo_df['Year'] == selected_year)
-    ]
+if filtered_data.empty:
+    st.warning("No data available for this company and year.")
+    selected_data = None
+else:
+    selected_data = filtered_data.iloc[0]
 
-    if filtered_data.empty:
-        st.warning("No data available for this company and year.")
-        selected_data = None
-    else:
-        selected_data = filtered_data.iloc[0]
+    info_col, img_col = st.columns([1, 1])
 
-        info_col, img_col = st.columns([1, 1])
+    with img_col:
+        image_path = selected_data.get('Image Path')
+        if pd.notna(image_path) and os.path.exists(image_path):
+            st.image(image_path, width=200)
+        else:
+            st.info("Image not available for this CEO/year.")
 
-        with img_col:
-            image_path = selected_data.get('Image Path')
-            if pd.notna(image_path) and os.path.exists(image_path):
-                st.image(image_path, width=200)
-            else:
-                st.info("Image not available for this CEO/year.")
-            firm_return = selected_data.get('Tenure_Cum_Ret_Overall')
-            if pd.notna(firm_return):
-                st.metric(label="Firm Return", value=f"{firm_return:.1f}")
-            else:
-                st.metric(label="Firm Return", value="N/A")
+        firm_return = selected_data.get('Tenure_Cum_Ret_Overall')
+        if pd.notna(firm_return):
+            st.metric(label="Firm Return", value=f"{firm_return:.1f}")
+        else:
+            st.metric(label="Firm Return", value="N/A")
 
-        with info_col:
-            st.text(f"Company: {selected_data.get('Ticker', 'N/A')}")
-            st.text(f"Year: {selected_data.get('Year', 'N/A')}")
-            st.text(f"CEO: {selected_data.get('CEO', 'N/A')}")
-            st.text(f"Sex: {selected_data.get('dominant_gender', 'N/A')}")
-            st.text(f"Race (inferred): {selected_data.get('dominant_race', 'N/A')}")
-            st.text(f"Age: {selected_data.get('age', 'N/A')}")
-            st.text(f"Dominant Emotion: {selected_data.get('dominant_emotion', 'N/A')}")
-            st.text(f"Angry: {selected_data.get('angry', 0):.2f}")
-            st.text(f"Disgust: {selected_data.get('disgust', 0):.2f}")
-            st.text(f"Fear: {selected_data.get('fear', 0):.2f}")
-            st.text(f"Happy: {selected_data.get('happy', 0):.2f}")
-            st.text(f"Sad: {selected_data.get('sad', 0):.2f}")
-            st.text(f"Surprise: {selected_data.get('surprise', 0):.2f}")
-            st.text(f"Neutral: {selected_data.get('neutral', 0):.2f}")
+    with info_col:
+        st.text(f"Company: {selected_data.get('Ticker', 'N/A')}")
+        st.text(f"Year: {selected_data.get('Year', 'N/A')}")
+        st.text(f"CEO: {selected_data.get('CEO', 'N/A')}")
+        st.text(f"Sex: {selected_data.get('dominant_gender', 'N/A')}")
+        st.text(f"Race (inferred): {selected_data.get('dominant_race', 'N/A')}")
+        st.text(f"Age: {selected_data.get('age', 'N/A')}")
+        st.text(f"Dominant Emotion: {selected_data.get('dominant_emotion', 'N/A')}")
+        st.text(f"Angry: {selected_data.get('angry', 0):.2f}")
+        st.text(f"Disgust: {selected_data.get('disgust', 0):.2f}")
+        st.text(f"Fear: {selected_data.get('fear', 0):.2f}")
+        st.text(f"Happy: {selected_data.get('happy', 0):.2f}")
+        st.text(f"Sad: {selected_data.get('sad', 0):.2f}")
+        st.text(f"Surprise: {selected_data.get('surprise', 0):.2f}")
+        st.text(f"Neutral: {selected_data.get('neutral', 0):.2f}")
 
 # --- Cumulative Returns Plot ---
 if selected_data is not None:

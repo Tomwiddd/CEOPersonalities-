@@ -4,7 +4,7 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.graph_objects as go
+# import plotly.graph_objects as go
 # from plotly.subplots import make_subplots
 
 # Set up the page selector

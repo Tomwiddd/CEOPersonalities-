@@ -167,19 +167,19 @@ elif page == "CEO Attributes":
         cum_spy = (1 + spy_df['Return']).cumprod() - 1
         sns.lineplot(x=cum_spy.index, y=cum_spy, ax=ax, label='SPY')
 
-        plt.title(f"Cumulative Daily Returns for {ceo_name} at {ticker} in {year}")
-        plt.xlabel("Date")
-        plt.ylabel("Cumulative Return")
-        plt.legend()
-        plt.grid(True, linestyle='--', alpha=0.7)
-        ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: '{:.0%}'.format(y)))
-        plt.xticks(rotation=45)
-        plt.tight_layout()
+    plt.title(f"Cumulative Daily Returns for {ceo_name} at {ticker} in {year}")
+    plt.xlabel("Date")
+    plt.ylabel("Cumulative Return")
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.7)
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: '{:.0%}'.format(y)))
+    plt.xticks(rotation=45)
+    plt.tight_layout()
     return fig
-    fig = plot_cumulative_returns_by_ceo(selected_company, ceo_name, r_df, selected_year)
+fig = plot_cumulative_returns_by_ceo(selected_company, ceo_name, r_df, selected_year)
     if fig:
         st.pyplot(fig)
-
+    
 
 
 

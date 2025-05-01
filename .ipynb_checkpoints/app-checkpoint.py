@@ -208,3 +208,22 @@ elif page == "Analysis":
     # Display in Streamlit
     st.pyplot(fig)
 
+    st.subheader("CEO Sex Representation (2010–2019)")
+    
+    # Define sex columns
+    sex_cols = ['Man', 'Woman']
+    
+    # Melt the sex data into long format
+    df_sex = output_yearly[sex_cols].melt(var_name='Sex', value_name='Percentage')
+    
+    # Create the plot
+    fig_sex, ax_sex = plt.subplots(figsize=(10, 6))
+    sns.barplot(data=df_sex, x='Sex', y='Percentage', estimator='mean', ci='sd', ax=ax_sex)
+    ax_sex.set_title('CEO Sex Representation')
+    ax_sex.set_ylabel('Mean Percentage (%)')
+    ax_sex.set_xlabel('')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    
+    # Display in Streamlit
+    st.pyplot(fig_sex)

@@ -242,7 +242,7 @@ elif page == "Analysis":
     # Display in Streamlit
     st.pyplot(fig_age)
 
-st.subheader("📌 Correlation Between CEO Attributes and Firm Returns")
+    st.subheader("📌 Correlation Between CEO Attributes and Firm Returns")
     
     # Define relevant columns
     image_attributes = [

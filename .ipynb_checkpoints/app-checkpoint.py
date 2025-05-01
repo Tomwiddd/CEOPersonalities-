@@ -101,7 +101,7 @@ elif page == "CEO Attributes":
                     "Surprise": f"{selected_data.get('surprise', 0):.2f}",
                     "Neutral": f"{selected_data.get('neutral', 0):.2f}",
                 }
-    attr_df = pd.DataFrame(list(ceo_attributes.items()), columns=["Attribute", "Value"])
+    attr_df = pd.DataFrame(list(ceo_attributes.items()))
     st.table(attr_df)
 
 

@@ -96,7 +96,7 @@ elif page == "CEO Attributes":
         ceo_attributes = {
             "Sex": selected_data.get('dominant_gender', 'N/A'),
             "Race (Inferred)": selected_data.get('dominant_race', 'N/A'),
-            "Age": selected_data.get('Age', 'N/A'),
+            "Age": int(selected_data['Age']) if pd.notnull(selected_data.get('Age')) else 'N/A',
             "Dominant Emotion": selected_data.get('dominant_emotion', 'N/A'),
             "Angry": f"{selected_data.get('angry', 0):.2f}",
             "Disgust": f"{selected_data.get('disgust', 0):.2f}",

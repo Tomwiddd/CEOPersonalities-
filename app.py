@@ -101,7 +101,7 @@ with col2:
         info_col, img_col = st.columns([1, 1])
 
         with img_col:
-            image_path = selected_data.get('Image Path')
+            image_path = selected_data.get(selected_data['Image Path'])
             if pd.notna(image_path) and os.path.exists(image_path):
                 st.image(image_path, width=200)
             else:

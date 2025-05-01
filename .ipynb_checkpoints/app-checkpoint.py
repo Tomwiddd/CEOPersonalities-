@@ -84,22 +84,26 @@ elif page == "CEO Attributes":
                 st.metric(label="Firm Return", value=f"{firm_return:.1f}")
             else:
                 st.metric(label="Firm Return", value="N/A")
+            with info_col:
+                ceo_attributes = {
+                    "Company": selected_data.get('Ticker', 'N/A'),
+                    "Year": selected_data.get('Year', 'N/A'),
+                    "CEO": selected_data.get('CEO', 'N/A'),
+                    "Sex": selected_data.get('dominant_gender', 'N/A'),
+                    "Race (Inferred)": selected_data.get('dominant_race', 'N/A'),
+                    "Age": selected_data.get('age', 'N/A'),
+                    "Dominant Emotion": selected_data.get('dominant_emotion', 'N/A'),
+                    "Angry": f"{selected_data.get('angry', 0):.2f}",
+                    "Disgust": f"{selected_data.get('disgust', 0):.2f}",
+                    "Fear": f"{selected_data.get('fear', 0):.2f}",
+                    "Happy": f"{selected_data.get('happy', 0):.2f}",
+                    "Sad": f"{selected_data.get('sad', 0):.2f}",
+                    "Surprise": f"{selected_data.get('surprise', 0):.2f}",
+                    "Neutral": f"{selected_data.get('neutral', 0):.2f}",
+                }
+    attr_df = pd.DataFrame(list(ceo_attributes.items()), columns=["Attribute", "Value"])
+    st.table(attr_df)
 
-        with info_col:
-            st.text(f"Company: {selected_data.get('Ticker', 'N/A')}")
-            st.text(f"Year: {selected_data.get('Year', 'N/A')}")
-            st.text(f"CEO: {selected_data.get('CEO', 'N/A')}")
-            st.text(f"Sex: {selected_data.get('dominant_gender', 'N/A')}")
-            st.text(f"Race (inferred): {selected_data.get('dominant_race', 'N/A')}")
-            st.text(f"Age: {selected_data.get('age', 'N/A')}")
-            st.text(f"Dominant Emotion: {selected_data.get('dominant_emotion', 'N/A')}")
-            st.text(f"Angry: {selected_data.get('angry', 0):.2f}")
-            st.text(f"Disgust: {selected_data.get('disgust', 0):.2f}")
-            st.text(f"Fear: {selected_data.get('fear', 0):.2f}")
-            st.text(f"Happy: {selected_data.get('happy', 0):.2f}")
-            st.text(f"Sad: {selected_data.get('sad', 0):.2f}")
-            st.text(f"Surprise: {selected_data.get('surprise', 0):.2f}")
-            st.text(f"Neutral: {selected_data.get('neutral', 0):.2f}")
 
     # --- Cumulative Returns Plot ---
     try:
@@ -179,5 +183,5 @@ elif page == "CEO Attributes":
         st.pyplot(fig)
 
 elif page == "Analysis":
-    st.title("📈 CEO Attributes and Firm Returns: Analysis")
+    st.title("📈 CEO Attributes and Firm Returns:Analysis")
     st.write("Visualize returns and evaluate CEO performance.")

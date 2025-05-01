@@ -183,9 +183,11 @@ import pandas as pd
 import plotly.graph_objects as go
 import os
 
-# --- Load CSV safely ---
-file_path = os.path.join("outputs", "output_daily.csv")
+# --- Page Title ---
+st.title("CEO Cumulative Returns & Image Attributes")
 
+# --- Load Data Safely ---
+file_path = os.path.join("outputs", "output_daily.csv")
 if not os.path.exists(file_path):
     st.error(f"File not found: {file_path}")
     st.stop()
@@ -193,21 +195,18 @@ if not os.path.exists(file_path):
 df = pd.read_csv(file_path)
 df['Date'] = pd.to_datetime(df['Date'])
 
-# --- Create CEO-Year dropdown labels ---
+# --- Create CEO-Year Dropdown Options ---
 df['CEO_Year'] = df['CEO'] + " (" + df['Year'].astype(str) + ")"
 options = sorted(df['CEO_Year'].dropna().unique())
-
-st.title("CEO Cumulative Returns & Image Attributes")
 selected_ceo_year = st.selectbox("Select a CEO-Year", options)
 
-# --- Filter data ---
+# --- Filter Data by Selection ---
 selected_ceo, year_str = selected_ceo_year.rsplit(" (", 1)
 selected_year = int(year_str.rstrip(")"))
-
 ceo_df = df[(df['CEO'] == selected_ceo) & (df['Year'] == selected_year)].copy()
 ceo_df = ceo_df.sort_values('Date')
 
-# --- Plot cumulative return ---
+# --- Plot Cumulative Return ---
 if 'Year_Cum_Ret_Daily' in ceo_df.columns:
     ceo_df['Cumulative_Return'] = ceo_df['Year_Cum_Ret_Daily']
 
@@ -228,7 +227,7 @@ if 'Year_Cum_Ret_Daily' in ceo_df.columns:
 else:
     st.warning("Column 'Year_Cum_Ret_Daily' not found in data.")
 
-# --- Show image attributes ---
+# --- Show Image Attributes ---
 st.markdown("### Image Attributes")
 
 image_cols = [
